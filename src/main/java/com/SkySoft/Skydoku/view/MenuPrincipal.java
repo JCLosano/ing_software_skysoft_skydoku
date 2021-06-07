@@ -10,7 +10,7 @@ public class MenuPrincipal extends JFrame {
     JPanel panelMenuPrincipal = new JPanel();
 
     public MenuPrincipal() {
-        super ("menu principal");
+        super ("Skydoku");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         TitledBorder border;
