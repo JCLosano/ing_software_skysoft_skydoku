@@ -1,13 +1,14 @@
 package com.SkySoft.Skydoku;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
+import com.SkySoft.Skydoku.view.*;
+import javax.swing.*;
+import java.awt.*;
+
+public class App {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
+        catch (Exception ex) { ex.printStackTrace(); }
+        new MenuPrincipal();
     }
 }
