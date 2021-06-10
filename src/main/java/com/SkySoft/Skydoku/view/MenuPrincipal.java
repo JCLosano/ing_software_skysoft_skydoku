@@ -29,7 +29,7 @@ public class MenuPrincipal extends JFrame {
         setVisible(true);
     }
 
-    private TitledBorder crearBorder() {
+    public TitledBorder crearBorder() {
         return BorderFactory.createTitledBorder("Menu Principal");
     }
 
