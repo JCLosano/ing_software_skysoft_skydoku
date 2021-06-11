@@ -1,7 +1,12 @@
-version: 2.1
+version: 2.0
 
 orbs:
   maven: circleci/maven@1.1
+
+jobs:
+  build:
+    environment:
+      _JAVA_OPTIONS: "-Djava.awt.headless=true"
 
 workflows:
   maven_test:
