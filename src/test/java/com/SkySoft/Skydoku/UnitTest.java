@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
+import java.awt.*;
 
 /**
  * Unit test for simple App.

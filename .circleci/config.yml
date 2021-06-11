@@ -7,3 +7,6 @@ workflows:
   maven_test:
     jobs:
       - maven/test
+      build:
+        environment:
+          _JAVA_OPTIONS: "-Djava.awt.headless=true"
