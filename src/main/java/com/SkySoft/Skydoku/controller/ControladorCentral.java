@@ -35,7 +35,8 @@ public class ControladorCentral implements ActionListener {
             	break;
             case "Facil":
             	App.jugar.frameNombre.setVisible(true);
-            	//frame.add(App.activa.panelActiva);
+            	frame.remove(App.jugar.panelJugar);
+            	frame.add(App.activa.pnlAlign);
             	break;
             case "Normal":
             	App.jugar.frameNombre.setVisible(true);
@@ -48,6 +49,10 @@ public class ControladorCentral implements ActionListener {
             case "Registrar":
             	chequearNombre();
             	//App.jugar.frameNombre.setVisible(false);
+            	break;
+            case "MenuPrincipal":
+            	frame.remove(App.activa.pnlAlign);
+            	frame.add(App.menuPrincipal.panelMenuPrincipal);
             	break;
             default:
             	break;

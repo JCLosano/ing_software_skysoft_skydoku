@@ -9,6 +9,7 @@ public class App {
 	public static MenuPrincipal menuPrincipal;
 	public static Ayuda ayuda;
 	public static Jugar jugar;
+	public static Activa activa;
 	
     public static void main( String[] args )
     {
@@ -25,6 +26,7 @@ public class App {
         frame.setVisible(true);
         ayuda = new Ayuda(controladorCentral);
         jugar = new Jugar(controladorCentral);
+        activa = new Activa(controladorCentral);
         
     }
 }
