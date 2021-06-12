@@ -10,7 +10,6 @@ public class App {
 	public static Ayuda ayuda;
 	public static Jugar jugar;
 	
-	
     public static void main( String[] args )
     {
         try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }

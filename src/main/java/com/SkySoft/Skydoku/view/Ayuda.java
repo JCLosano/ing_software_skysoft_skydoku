@@ -26,6 +26,7 @@ public class Ayuda{
         boton_atras.addActionListener(controladorCentral);
         boton_atras.setActionCommand("AtrasAyuda");
         
+        
     }
     
     public TitledBorder crearBorder() {

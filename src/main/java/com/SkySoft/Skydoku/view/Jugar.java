@@ -8,6 +8,9 @@ import java.awt.*;
 
 public class Jugar {
 	public JPanel panelJugar = new JPanel();
+	public JPanel panelNombre = new JPanel();
+	public JFrame frameNombre = new JFrame();
+	public JTextField textField = new JTextField();
 	
 	public Jugar(ControladorCentral controladorCentral) 
 	{
@@ -17,8 +20,6 @@ public class Jugar {
         panelJugar.setBorder(border);
         panelJugar.setLayout(new BoxLayout(panelJugar, BoxLayout.Y_AXIS));
         panelJugar.setPreferredSize(new Dimension(640, 480));
-        
-        //panelJugar.add(Box.createVerticalStrut(150));
         
         JButton boton_facil = botonFacil();
         boton_facil.addActionListener(controladorCentral);
@@ -32,6 +33,25 @@ public class Jugar {
         JButton boton_atras = botonAtras();
         boton_atras.addActionListener(controladorCentral);
         boton_atras.setActionCommand("AtrasJugar");
+        
+        crearFrameNombre(controladorCentral);
+	}
+	
+	private void crearFrameNombre(ControladorCentral controladorCentral) {
+		frameNombre.setBounds(100, 100, 306, 163);
+		
+		frameNombre.getContentPane().add(panelNombre, BorderLayout.CENTER);
+		
+		textField.setHorizontalAlignment(SwingConstants.CENTER);
+		panelNombre.add(textField);
+		textField.setColumns(10);
+		
+		JButton boton_registrar = new JButton("Registrar");
+		boton_registrar.setAlignmentX(Component.CENTER_ALIGNMENT);
+		boton_registrar.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+		panelNombre.add(boton_registrar);
+		
+		boton_registrar.addActionListener(controladorCentral);
 	}
 	
 	public JButton botonFacil() {
