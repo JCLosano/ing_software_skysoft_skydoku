@@ -2,6 +2,7 @@ package com.SkySoft.Skydoku;
 
 import static org.junit.Assert.*;
 
+import com.SkySoft.Skydoku.Model.Tablero;
 import com.SkySoft.Skydoku.controller.ControladorCentral;
 import com.SkySoft.Skydoku.view.Ayuda;
 import com.SkySoft.Skydoku.view.Jugar;
@@ -25,7 +26,8 @@ public class UnitTest
     public void textoMenuPrincipal_vMenuPrincipal()
     {
     	JFrame frame = new JFrame();
-    	ControladorCentral controladorCentral = new ControladorCentral(frame);
+    	Tablero tablero = new Tablero();
+    	ControladorCentral controladorCentral = new ControladorCentral(frame, tablero);
         MenuPrincipal menuPrincipal = new MenuPrincipal(frame, controladorCentral);
         TitledBorder border = menuPrincipal.crearBorder();
         assertEquals("Menu Principal", border.getTitle());
@@ -35,7 +37,8 @@ public class UnitTest
     public void botonJugar_vMenuPrincipal() 
     {
     	JFrame frame = new JFrame();
-    	ControladorCentral controladorCentral = new ControladorCentral(frame);
+    	Tablero tablero = new Tablero();
+    	ControladorCentral controladorCentral = new ControladorCentral(frame, tablero);
     	MenuPrincipal menuPrincipal = new MenuPrincipal(frame, controladorCentral);
     	JButton jugar = menuPrincipal.botonJugar();
     	assertEquals("JButton", jugar.getClass().getSimpleName());
@@ -46,7 +49,8 @@ public class UnitTest
     public void botonPuntuaciones_vMenuPrincipal() 
     {
     	JFrame frame = new JFrame();
-    	ControladorCentral controladorCentral = new ControladorCentral(frame);
+    	Tablero tablero = new Tablero();
+    	ControladorCentral controladorCentral = new ControladorCentral(frame, tablero);
     	MenuPrincipal menuPrincipal = new MenuPrincipal(frame, controladorCentral);
     	JButton puntuaciones = menuPrincipal.botonPuntuaciones();
     	assertEquals("JButton", puntuaciones.getClass().getSimpleName());
@@ -57,7 +61,8 @@ public class UnitTest
     public void botonAyuda_vMenuPrincipal()
     {
     	JFrame frame = new JFrame();
-    	ControladorCentral controladorCentral = new ControladorCentral(frame);
+    	Tablero tablero = new Tablero();
+    	ControladorCentral controladorCentral = new ControladorCentral(frame, tablero);
     	MenuPrincipal menuPrincipal = new MenuPrincipal(frame, controladorCentral);
     	JButton ayuda = menuPrincipal.botonAyuda();
     	assertEquals("JButton", ayuda.getClass().getSimpleName());
@@ -67,7 +72,8 @@ public class UnitTest
     @Test
     public void textoAyuda_vAyuda() {
     	JFrame frame = new JFrame();
-    	ControladorCentral controladorCentral = new ControladorCentral(frame);
+    	Tablero tablero = new Tablero();
+    	ControladorCentral controladorCentral = new ControladorCentral(frame, tablero);
     	Ayuda ayuda = new Ayuda(controladorCentral);
     	JTextArea textoAyuda = ayuda.textoAyuda();
     	assertEquals(false, textoAyuda.getText().isEmpty());
@@ -76,7 +82,8 @@ public class UnitTest
     @Test
     public void botonFacil_vJugar() {
     	JFrame frame = new JFrame();
-    	ControladorCentral controladorCentral = new ControladorCentral(frame);
+    	Tablero tablero = new Tablero();
+    	ControladorCentral controladorCentral = new ControladorCentral(frame, tablero);
     	Jugar jugar = new Jugar(controladorCentral);
     	JButton facil = jugar.botonFacil();
     	assertEquals("JButton", facil.getClass().getSimpleName());
@@ -86,7 +93,8 @@ public class UnitTest
     @Test
     public void botonNormal_vJugar() {
     	JFrame frame = new JFrame();
-    	ControladorCentral controladorCentral = new ControladorCentral(frame);
+    	Tablero tablero = new Tablero();
+    	ControladorCentral controladorCentral = new ControladorCentral(frame, tablero);
     	Jugar jugar = new Jugar(controladorCentral);
     	JButton normal = jugar.botonNormal();
     	assertEquals("JButton", normal.getClass().getSimpleName());
@@ -96,7 +104,8 @@ public class UnitTest
     @Test
     public void botonDificil_vJugar() {
     	JFrame frame = new JFrame();
-    	ControladorCentral controladorCentral = new ControladorCentral(frame);
+    	Tablero tablero = new Tablero();
+    	ControladorCentral controladorCentral = new ControladorCentral(frame, tablero);
     	Jugar jugar = new Jugar(controladorCentral);
     	JButton dificil = jugar.botonDificil();
     	assertEquals("JButton", dificil.getClass().getSimpleName());
@@ -106,7 +115,8 @@ public class UnitTest
     @Test
     public void botonAtras_vJugar() {
     	JFrame frame = new JFrame();
-    	ControladorCentral controladorCentral = new ControladorCentral(frame);
+    	Tablero tablero = new Tablero();
+    	ControladorCentral controladorCentral = new ControladorCentral(frame, tablero);
     	Jugar jugar = new Jugar(controladorCentral);
     	JButton atras = jugar.botonAtras();
     	assertEquals("JButton", atras.getClass().getSimpleName());
