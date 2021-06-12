@@ -4,6 +4,9 @@ public class Facil implements Dificultad{
 	
 	private final int tamanio = 2;
 	
+	public Facil() {
+	}
+	
 	public int tamanioTablero() {
 		return tamanio;
 	}

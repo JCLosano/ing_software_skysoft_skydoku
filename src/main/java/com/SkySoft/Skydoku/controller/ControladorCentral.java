@@ -3,16 +3,20 @@ package com.SkySoft.Skydoku.controller;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 
 import com.SkySoft.Skydoku.App;
+import com.SkySoft.Skydoku.Model.Tablero;
 
 public class ControladorCentral implements ActionListener {
 	JFrame frame;
 	App app;
+	Tablero tablero;
 	
-    public ControladorCentral(JFrame frame) {
+    public ControladorCentral(JFrame frame, Tablero tablero) {
     	this.frame = frame;
+    	this.tablero = tablero;
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -35,16 +39,30 @@ public class ControladorCentral implements ActionListener {
             	break;
             case "Facil":
             	App.jugar.frameNombre.setVisible(true);
+            	tablero.crearTablero(e.getActionCommand());
+            	App.activa.crearGrilla(tablero.getTamanio(),tablero.getTamanio());
+            	//LLAMAR LLENAR TABLERO.
+            	App.activa.pnlAlign.setPreferredSize(new Dimension(300,200));
             	frame.remove(App.jugar.panelJugar);
             	frame.add(App.activa.pnlAlign);
             	break;
             case "Normal":
             	App.jugar.frameNombre.setVisible(true);
-            	//frame.add(App.activa.panelActiva);
+            	tablero.crearTablero(e.getActionCommand());
+            	App.activa.crearGrilla(tablero.getTamanio(), tablero.getTamanio());
+            	//LLAMAR LLENAR TABLERO.
+            	App.activa.pnlAlign.setPreferredSize(new Dimension(600,400));
+            	frame.remove(App.jugar.panelJugar);
+            	frame.add(App.activa.pnlAlign);
             	break;
             case "Dificil":
             	App.jugar.frameNombre.setVisible(true);
-            	//frame.add(App.activa.panelActiva);
+            	tablero.crearTablero(e.getActionCommand());
+            	App.activa.crearGrilla(tablero.getTamanio(), tablero.getTamanio());
+            	//LLAMAR LLENAR TABLERO.
+            	App.activa.pnlAlign.setPreferredSize(new Dimension(800,700));
+            	frame.remove(App.jugar.panelJugar);
+            	frame.add(App.activa.pnlAlign);
             	break;
             case "Registrar":
             	chequearNombre();

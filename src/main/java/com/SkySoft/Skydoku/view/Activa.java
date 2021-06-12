@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 
+import com.SkySoft.Skydoku.Model.Tablero;
 import com.SkySoft.Skydoku.controller.ControladorCentral;
 
 public class Activa extends JPanel{
@@ -22,12 +23,16 @@ public class Activa extends JPanel{
 	public JPanel pnlAlign = new JPanel();
 	private JPanel[][] casillaGrande;
 	private Casilla[][] casillaChica;
+	private int tamanioTablero;
+	private Tablero tablero;
 	
 	JButton btnNew;
 	
-	public Activa(ControladorCentral controladorCentral) {
+	public Activa(ControladorCentral controladorCentral, Tablero tablero) {
 		TitledBorder border;
 	    border = crearBorder();
+	    
+	    this.tablero = tablero;
 
         pnlAlign.setLayout(new BoxLayout(pnlAlign, BoxLayout.X_AXIS));
 	    
@@ -64,10 +69,9 @@ public class Activa extends JPanel{
 		//pnlAlign.add(panelBotones);
 		pnlAlign.add(panelActiva);
 		
+		//tamanioTablero = this.tablero.getTamanio();
 
-        crearGrilla(4,4);
-        
-        pnlAlign.setPreferredSize(new Dimension(800,700));
+        //crearGrilla(tamanioTablero, tamanioTablero);
         
         //pnlAlign.add(panelActiva);
         

@@ -2,23 +2,32 @@ package com.SkySoft.Skydoku.Model;
 
 public class Tablero {
     Dificultad dificultad;
-
+    private int tamanio;
+    
     public Tablero () {
 
 
     }
 
-    public void crearTablero(int x) {
-        switch (x) {
-            case 0:
-                dificultad = new Facil();
+    public void crearTablero(String dificultad) {
+        switch (dificultad) {
+            case "Facil":
+                this.dificultad = new Facil();
                 break;
-            case 1:
-                dificultad = new Normal();
+            case "Normal":
+                this.dificultad = new Normal();
                 break;
-            case 2:
-                dificultad = new Dificil();
+            case "Dificil":
+                this.dificultad = new Dificil();
                 break;
+            default:
+            	break;
         }
+        tamanio = this.dificultad.tamanioTablero();
     }
+    
+    public int getTamanio() {
+    	return tamanio;
+    }
+    
 }
