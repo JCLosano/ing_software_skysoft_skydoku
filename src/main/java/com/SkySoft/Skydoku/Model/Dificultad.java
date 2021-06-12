@@ -1,4 +1,6 @@
 package com.SkySoft.Skydoku.Model;
 
-public class Dificultad {
+public interface Dificultad {
+	public int tamanioTablero();
+	public void llenarTablero();
 }
