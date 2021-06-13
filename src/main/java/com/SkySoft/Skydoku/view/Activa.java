@@ -104,6 +104,7 @@ public class Activa extends JPanel{
         	}
         }
         estado_grilla = true;
+        tamanioTablero = filas*columnas;
 	}
 	
     private JButton agregarBoton (String nombre_boton, JPanel panel) {
@@ -115,6 +116,10 @@ public class Activa extends JPanel{
 
     public JButton getBotonMenuPrincipal (){
 		return boton_menuPrincipal;
+	}
+
+	public int getTamanioTablero() {
+		return tamanioTablero;
 	}
 
 	public boolean getEstadoGrilla() {

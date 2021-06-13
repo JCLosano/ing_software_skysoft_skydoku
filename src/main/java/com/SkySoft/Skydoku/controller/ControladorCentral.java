@@ -148,7 +148,7 @@ public class ControladorCentral implements ActionListener {
     	return false;
     }
 
-    private void crearActiva() {
+    public void crearActiva() {
     	activa = new Activa(this, tablero);
 	}
 

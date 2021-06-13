@@ -109,4 +109,16 @@ public class UnitTest
                     , controladorCentral.getJugar().getBotonAtras().getClass().getSimpleName());
         assertEquals("Atras", controladorCentral.getJugar().getBotonAtras().getText());
     }
+
+    @Test
+    public void botonMenuPrincipal_vActiva() {
+        ControladorCentral controladorCentral = new ControladorCentral();
+
+        controladorCentral.crearActiva();
+
+        assertEquals("JButton"
+                    , controladorCentral.getActiva().getBotonMenuPrincipal().getClass().getSimpleName());
+        assertEquals("Menu Principal"
+                    , controladorCentral.getActiva().getBotonMenuPrincipal().getText());
+    }
 }

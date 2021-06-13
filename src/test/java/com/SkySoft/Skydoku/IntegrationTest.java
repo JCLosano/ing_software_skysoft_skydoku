@@ -27,12 +27,14 @@ public class IntegrationTest {
 	public void menuPrincipal_vActiva() {
 	    ControladorCentral controladorCentral = new ControladorCentral();
 
+	    controladorCentral.crearActiva();
+
 	    controladorCentral.getActiva().getBotonMenuPrincipal().doClick();
 
 	    assertTrue(controladorCentral.getMenuPrincipal().panelMenuPrincipal.isShowing());
     }
 
-/*    @Test
+    @Test
 	public void seleccionarFacil_vJugar() {
 		ControladorCentral controladorCentral = new ControladorCentral();
 
@@ -42,7 +44,32 @@ public class IntegrationTest {
 
 		controladorCentral.getJugar().getBotonRegistrar().doClick();
 
-		assertTrue(controladorCentral.getActiva().);
-		//CHEQUEAR QUE SE ARME EL TABLERO DE TAMANIO 2
-	}*/
+		assertEquals(4,controladorCentral.getActiva().getTamanioTablero());
+	}
+
+	@Test
+	public void seleccionarNormal_vJugar() {
+		ControladorCentral controladorCentral = new ControladorCentral();
+
+		controladorCentral.getJugar().getBotonNormal().doClick();
+
+		controladorCentral.getJugar().getTextField().setText("oscar");
+
+		controladorCentral.getJugar().getBotonRegistrar().doClick();
+
+		assertEquals(9,controladorCentral.getActiva().getTamanioTablero());
+	}
+
+	@Test
+	public void seleccionarDificil_vJugar() {
+		ControladorCentral controladorCentral = new ControladorCentral();
+
+		controladorCentral.getJugar().getBotonDificil().doClick();
+
+		controladorCentral.getJugar().getTextField().setText("oscar");
+
+		controladorCentral.getJugar().getBotonRegistrar().doClick();
+
+		assertEquals(16,controladorCentral.getActiva().getTamanioTablero());
+	}
 }
