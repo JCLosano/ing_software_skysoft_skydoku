@@ -13,6 +13,7 @@ public class ControladorCentral implements ActionListener {
 	JFrame frame;
 	App app;
 	Tablero tablero;
+	//int[][] numerosTablero;
 	
     public ControladorCentral(JFrame frame, Tablero tablero) {
     	this.frame = frame;
@@ -59,6 +60,7 @@ public class ControladorCentral implements ActionListener {
             	App.jugar.frameNombre.setVisible(true);
             	tablero.crearTablero(e.getActionCommand());
             	App.activa.crearGrilla(tablero.getTamanio(), tablero.getTamanio());
+            	//App.activa.
             	//LLAMAR LLENAR TABLERO.
             	App.activa.pnlAlign.setPreferredSize(new Dimension(800,700));
             	frame.remove(App.jugar.panelJugar);

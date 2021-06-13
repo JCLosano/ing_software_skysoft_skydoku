@@ -11,7 +11,14 @@ public class Dificil implements Dificultad{
 		return tamanio;
 	}
 	
-	public void llenarTablero() {
+	public int [][] llenarTablero() {
+		int [][] numerosTablero = 
+		{{4, 0, 3, 0,},
+		 {0, 2, 0, 0,},
+		 {0, 0, 1, 0,},
+		 {0, 4, 0, 3,}
+		};
 		
+		return numerosTablero;
 	}
 }
