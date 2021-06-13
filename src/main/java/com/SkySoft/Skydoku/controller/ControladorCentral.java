@@ -34,8 +34,6 @@ public class ControladorCentral implements ActionListener {
 
     	ayuda = new Ayuda(this);
     	jugar = new Jugar(this);
-    	activa = new Activa(this, tablero);
-
 
     }
 
@@ -60,30 +58,34 @@ public class ControladorCentral implements ActionListener {
             case "Facil":
             	jugar.frameNombre.setVisible(true);
             	tablero.crearTablero(e.getActionCommand());
-            	activa.crearGrilla(tablero.getTamanio(),tablero.getTamanio());
+
+				crearActiva();
+				activa.crearGrilla(tablero.getTamanio(), tablero.getTamanio());
+
             	//LLAMAR LLENAR TABLERO.
 				activa.pnlAlign.setPreferredSize(new Dimension(300,200));
-/*            	frame.remove(jugar.panelJugar);
-            	frame.add(activa.pnlAlign);*/
             	break;
             case "Normal":
             	jugar.frameNombre.setVisible(true);
             	tablero.crearTablero(e.getActionCommand());
-            	activa.crearGrilla(tablero.getTamanio(), tablero.getTamanio());
+
+				crearActiva();
+				activa.crearGrilla(tablero.getTamanio(), tablero.getTamanio());
+
+
             	//LLAMAR LLENAR TABLERO.
             	activa.pnlAlign.setPreferredSize(new Dimension(600,400));
-/*            	frame.remove(jugar.panelJugar);
-            	frame.add(activa.pnlAlign);*/
             	break;
             case "Dificil":
             	jugar.frameNombre.setVisible(true);
             	tablero.crearTablero(e.getActionCommand());
-            	activa.crearGrilla(tablero.getTamanio(), tablero.getTamanio());
-            	//activa.
+
+				crearActiva();
+				activa.crearGrilla(tablero.getTamanio(), tablero.getTamanio());
+
+
             	//LLAMAR LLENAR TABLERO.
             	activa.pnlAlign.setPreferredSize(new Dimension(800,700));
-/*            	frame.remove(jugar.panelJugar);
-            	frame.add(activa.pnlAlign);*/
             	break;
             case "Registrar":
             	if(chequearNombre()) {
@@ -94,6 +96,7 @@ public class ControladorCentral implements ActionListener {
             	break;
             case "Menu Principal":
             	frame.remove(activa.pnlAlign);
+            	borrarActiva();
             	frame.add(menuPrincipal.panelMenuPrincipal);
             	break;
             default:
@@ -144,6 +147,14 @@ public class ControladorCentral implements ActionListener {
 		}
     	return false;
     }
+
+    private void crearActiva() {
+    	activa = new Activa(this, tablero);
+	}
+
+	private void borrarActiva() {
+    	activa = null;
+	}
 
     public JFrame getFrame() {
     	return frame;

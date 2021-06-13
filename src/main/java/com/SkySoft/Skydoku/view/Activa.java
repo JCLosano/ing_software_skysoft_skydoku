@@ -25,6 +25,7 @@ public class Activa extends JPanel{
 	private Casilla[][] casillaChica;
 	private int tamanioTablero;
 	private Tablero tablero;
+	private boolean estado_grilla;
 	
 	JButton boton_menuPrincipal, boton_puntuaciones;
 	
@@ -33,6 +34,8 @@ public class Activa extends JPanel{
 	    border = crearBorder();
 	    
 	    this.tablero = tablero;
+
+	    estado_grilla = false;
 
         pnlAlign.setLayout(new BoxLayout(pnlAlign, BoxLayout.X_AXIS));
 	    
@@ -100,6 +103,7 @@ public class Activa extends JPanel{
         		casillaGrande[y/columnas][x/filas].add(casillaChica[y][x]);
         	}
         }
+        estado_grilla = true;
 	}
 	
     private JButton agregarBoton (String nombre_boton, JPanel panel) {
@@ -111,6 +115,14 @@ public class Activa extends JPanel{
 
     public JButton getBotonMenuPrincipal (){
 		return boton_menuPrincipal;
+	}
+
+	public boolean getEstadoGrilla() {
+		return estado_grilla;
+	}
+
+	public void setEstadoGrilla(boolean estado) {
+		estado_grilla = estado;
 	}
 }
 
