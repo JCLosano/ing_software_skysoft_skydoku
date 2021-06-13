@@ -113,7 +113,7 @@ public class Activa extends JPanel{
         panel.add(boton);
         return boton;
     }
-
+    
     public JButton getBotonMenuPrincipal (){
 		return boton_menuPrincipal;
 	}
