@@ -25,102 +25,88 @@ public class UnitTest
     @Test
     public void textoMenuPrincipal_vMenuPrincipal()
     {
-    	JFrame frame = new JFrame();
-    	Tablero tablero = new Tablero();
-    	ControladorCentral controladorCentral = new ControladorCentral(frame, tablero);
-        MenuPrincipal menuPrincipal = new MenuPrincipal(frame, controladorCentral);
-        TitledBorder border = menuPrincipal.crearBorder();
-        assertEquals("Menu Principal", border.getTitle());
+    	ControladorCentral controladorCentral = new ControladorCentral();
+
+        assertEquals("Menu Principal"
+                    , controladorCentral.getMenuPrincipal().getTitledBorder().getTitle());
     }
     
     @Test
     public void botonJugar_vMenuPrincipal() 
     {
-    	JFrame frame = new JFrame();
-    	Tablero tablero = new Tablero();
-    	ControladorCentral controladorCentral = new ControladorCentral(frame, tablero);
-    	MenuPrincipal menuPrincipal = new MenuPrincipal(frame, controladorCentral);
-    	JButton jugar = menuPrincipal.botonJugar();
-    	assertEquals("JButton", jugar.getClass().getSimpleName());
-    	assertEquals("Jugar", jugar.getText());
+    	ControladorCentral controladorCentral = new ControladorCentral();
+
+        assertEquals("JButton"
+                    , controladorCentral.getMenuPrincipal().getBotonJugar().getClass().getSimpleName());
+    	assertEquals("Jugar"
+                    , controladorCentral.getMenuPrincipal().getBotonJugar().getText());
     }
     
     @Test
     public void botonPuntuaciones_vMenuPrincipal() 
     {
-    	JFrame frame = new JFrame();
-    	Tablero tablero = new Tablero();
-    	ControladorCentral controladorCentral = new ControladorCentral(frame, tablero);
-    	MenuPrincipal menuPrincipal = new MenuPrincipal(frame, controladorCentral);
-    	JButton puntuaciones = menuPrincipal.botonPuntuaciones();
-    	assertEquals("JButton", puntuaciones.getClass().getSimpleName());
-    	assertEquals("Puntuaciones", puntuaciones.getText());
+
+    	ControladorCentral controladorCentral = new ControladorCentral();
+
+        assertEquals("JButton"
+                    , controladorCentral.getMenuPrincipal().getBotonPuntuaciones().getClass().getSimpleName());
+    	assertEquals("Puntuaciones"
+                    , controladorCentral.getMenuPrincipal().getBotonPuntuaciones().getText());
     }
     
     @Test
     public void botonAyuda_vMenuPrincipal()
     {
-    	JFrame frame = new JFrame();
-    	Tablero tablero = new Tablero();
-    	ControladorCentral controladorCentral = new ControladorCentral(frame, tablero);
-    	MenuPrincipal menuPrincipal = new MenuPrincipal(frame, controladorCentral);
-    	JButton ayuda = menuPrincipal.botonAyuda();
-    	assertEquals("JButton", ayuda.getClass().getSimpleName());
-    	assertEquals("Ayuda", ayuda.getText());
+    	ControladorCentral controladorCentral = new ControladorCentral();
+
+        assertEquals("JButton"
+                , controladorCentral.getMenuPrincipal().getBotonAyuda().getClass().getSimpleName());
+        assertEquals("Ayuda"
+                , controladorCentral.getMenuPrincipal().getBotonAyuda().getText());
     }
     
     @Test
     public void textoAyuda_vAyuda() {
-    	JFrame frame = new JFrame();
-    	Tablero tablero = new Tablero();
-    	ControladorCentral controladorCentral = new ControladorCentral(frame, tablero);
-    	Ayuda ayuda = new Ayuda(controladorCentral);
-    	JTextArea textoAyuda = ayuda.textoAyuda();
-    	assertEquals(false, textoAyuda.getText().isEmpty());
+    	ControladorCentral controladorCentral = new ControladorCentral();
+
+    	assertFalse(controladorCentral.getAyuda().textoAyuda().getText().isEmpty());
     }
     
     @Test
     public void botonFacil_vJugar() {
-    	JFrame frame = new JFrame();
-    	Tablero tablero = new Tablero();
-    	ControladorCentral controladorCentral = new ControladorCentral(frame, tablero);
-    	Jugar jugar = new Jugar(controladorCentral);
-    	JButton facil = jugar.botonFacil();
-    	assertEquals("JButton", facil.getClass().getSimpleName());
-    	assertEquals("Facil", facil.getText());
+
+    	ControladorCentral controladorCentral = new ControladorCentral();
+
+        assertEquals("JButton"
+                    , controladorCentral.getJugar().getBotonFacil().getClass().getSimpleName());
+        assertEquals("Facil", controladorCentral.getJugar().getBotonFacil().getText());
+
     }
     
     @Test
     public void botonNormal_vJugar() {
-    	JFrame frame = new JFrame();
-    	Tablero tablero = new Tablero();
-    	ControladorCentral controladorCentral = new ControladorCentral(frame, tablero);
-    	Jugar jugar = new Jugar(controladorCentral);
-    	JButton normal = jugar.botonNormal();
-    	assertEquals("JButton", normal.getClass().getSimpleName());
-    	assertEquals("Normal", normal.getText());
+        ControladorCentral controladorCentral = new ControladorCentral();
+
+        assertEquals("JButton"
+                    , controladorCentral.getJugar().getBotonNormal().getClass().getSimpleName());
+        assertEquals("Normal", controladorCentral.getJugar().getBotonNormal().getText());
     }
     
     @Test
     public void botonDificil_vJugar() {
-    	JFrame frame = new JFrame();
-    	Tablero tablero = new Tablero();
-    	ControladorCentral controladorCentral = new ControladorCentral(frame, tablero);
-    	Jugar jugar = new Jugar(controladorCentral);
-    	JButton dificil = jugar.botonDificil();
-    	assertEquals("JButton", dificil.getClass().getSimpleName());
-    	assertEquals("Dificil", dificil.getText());
+        ControladorCentral controladorCentral = new ControladorCentral();
+
+        assertEquals("JButton"
+                    , controladorCentral.getJugar().getBotonDificil().getClass().getSimpleName());
+        assertEquals("Dificil", controladorCentral.getJugar().getBotonDificil().getText());
     }
     
     @Test
     public void botonAtras_vJugar() {
-    	JFrame frame = new JFrame();
-    	Tablero tablero = new Tablero();
-    	ControladorCentral controladorCentral = new ControladorCentral(frame, tablero);
-    	Jugar jugar = new Jugar(controladorCentral);
-    	JButton atras = jugar.botonAtras();
-    	assertEquals("JButton", atras.getClass().getSimpleName());
-    	assertEquals("Atras", atras.getText());
+        ControladorCentral controladorCentral = new ControladorCentral();
+
+        assertEquals("JButton"
+                    , controladorCentral.getJugar().getBotonAtras().getClass().getSimpleName());
+        assertEquals("Atras", controladorCentral.getJugar().getBotonAtras().getText());
     }
-    
 }

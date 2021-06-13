@@ -8,11 +8,10 @@ import java.awt.*;
 
 public class MenuPrincipal {
     public JPanel panelMenuPrincipal = new JPanel();
-    private JButton boton_jugar;
+    private JButton boton_jugar, boton_puntuaciones, boton_ayuda;
+    TitledBorder border;
 
     public MenuPrincipal(JFrame frame, ControladorCentral controladorCentral) {
-
-        TitledBorder border;
         border = crearBorder();
 
         panelMenuPrincipal.setBorder(border);
@@ -25,19 +24,16 @@ public class MenuPrincipal {
         boton_jugar = botonJugar();
         boton_jugar.addActionListener(controladorCentral);
         
-        JButton boton_ayuda = botonAyuda();
+        boton_ayuda = botonAyuda();
         boton_ayuda.addActionListener(controladorCentral);
         
-        JButton boton_puntuaciones = botonPuntuaciones();
+        boton_puntuaciones = botonPuntuaciones();
         boton_puntuaciones.addActionListener(controladorCentral);
         
         //frame.pack();
         //frame.setVisible(true);
     }
     
-    public JButton getBotonJugar() {
-    	return boton_jugar;
-    }
 
     public TitledBorder crearBorder() {
         return BorderFactory.createTitledBorder("Menu Principal");
@@ -63,6 +59,22 @@ public class MenuPrincipal {
         boton.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(boton);
         return boton;
+    }
+
+    public JButton getBotonJugar() {
+        return boton_jugar;
+    }
+
+    public JButton getBotonPuntuaciones() {
+        return boton_puntuaciones;
+    }
+
+    public JButton getBotonAyuda() {
+        return boton_ayuda;
+    }
+
+    public TitledBorder getTitledBorder() {
+        return border;
     }
     
 

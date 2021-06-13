@@ -11,6 +11,8 @@ public class Jugar {
 	public JPanel panelNombre = new JPanel();
 	public JFrame frameNombre = new JFrame();
 	public JTextField textField = new JTextField();
+
+	JButton boton_facil, boton_normal, boton_dificil, boton_atras;
 	
 	public Jugar(ControladorCentral controladorCentral) 
 	{
@@ -21,16 +23,16 @@ public class Jugar {
         panelJugar.setLayout(new BoxLayout(panelJugar, BoxLayout.Y_AXIS));
         panelJugar.setPreferredSize(new Dimension(640, 480));
         
-        JButton boton_facil = botonFacil();
+        boton_facil = botonFacil();
         boton_facil.addActionListener(controladorCentral);
         
-        JButton boton_normal = botonNormal();
+        boton_normal = botonNormal();
         boton_normal.addActionListener(controladorCentral);
         
-        JButton boton_dificil = botonDificil();
+        boton_dificil = botonDificil();
         boton_dificil.addActionListener(controladorCentral);
         
-        JButton boton_atras = botonAtras();
+        boton_atras = botonAtras();
         boton_atras.addActionListener(controladorCentral);
         boton_atras.setActionCommand("AtrasJugar");
         
@@ -84,4 +86,21 @@ public class Jugar {
         panel.add(boton);
         return boton;
     }
+
+    public JButton getBotonFacil(){
+		return boton_facil;
+	}
+
+	public JButton getBotonNormal() {
+		return boton_normal;
+	}
+
+	public JButton getBotonDificil() {
+		return boton_dificil;
+	}
+
+	public JButton getBotonAtras() {
+		return boton_atras;
+	}
+
 }

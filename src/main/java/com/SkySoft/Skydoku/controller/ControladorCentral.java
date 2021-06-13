@@ -1,78 +1,97 @@
 package com.SkySoft.Skydoku.controller;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 
 import com.SkySoft.Skydoku.App;
 import com.SkySoft.Skydoku.Model.Tablero;
+import com.SkySoft.Skydoku.view.Activa;
+import com.SkySoft.Skydoku.view.Ayuda;
+import com.SkySoft.Skydoku.view.Jugar;
+import com.SkySoft.Skydoku.view.MenuPrincipal;
 
 public class ControladorCentral implements ActionListener {
 	JFrame frame;
-	App app;
+	MenuPrincipal menuPrincipal;
 	Tablero tablero;
+	Ayuda ayuda;
+	Jugar jugar;
+	Activa activa;
 	//int[][] numerosTablero;
 	
-    public ControladorCentral(JFrame frame, Tablero tablero) {
-    	this.frame = frame;
-    	this.tablero = tablero;
+    public ControladorCentral() {
+    	frame = new JFrame("SKYDOKU");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		menuPrincipal = new MenuPrincipal(frame, this);
+    	tablero = new Tablero();
+
+		frame.add(menuPrincipal.panelMenuPrincipal);
+		frame.pack();
+		frame.setVisible(true);
+
+    	ayuda = new Ayuda(this);
+    	jugar = new Jugar(this);
+    	activa = new Activa(this, tablero);
+
+
     }
 
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Jugar":
-        		frame.remove(App.menuPrincipal.panelMenuPrincipal);
-        		frame.add(App.jugar.panelJugar);
+        		frame.remove(menuPrincipal.panelMenuPrincipal);
+        		frame.add(jugar.panelJugar);
         		break;
             case "AtrasJugar":
-        		frame.remove(App.jugar.panelJugar);
-        		frame.add(App.menuPrincipal.panelMenuPrincipal);
+        		frame.remove(jugar.panelJugar);
+        		frame.add(menuPrincipal.panelMenuPrincipal);
         		break;
             case "Ayuda": 
-            	frame.remove(App.menuPrincipal.panelMenuPrincipal);
-            	frame.add(App.ayuda.panelAyuda);
+            	frame.remove(menuPrincipal.panelMenuPrincipal);
+            	frame.add(ayuda.panelAyuda);
             	break;
             case "AtrasAyuda":
-            	frame.remove(App.ayuda.panelAyuda);
-            	frame.add(App.menuPrincipal.panelMenuPrincipal);
+            	frame.remove(ayuda.panelAyuda);
+            	frame.add(menuPrincipal.panelMenuPrincipal);
             	break;
             case "Facil":
-            	App.jugar.frameNombre.setVisible(true);
+            	jugar.frameNombre.setVisible(true);
             	tablero.crearTablero(e.getActionCommand());
-            	App.activa.crearGrilla(tablero.getTamanio(),tablero.getTamanio());
+            	activa.crearGrilla(tablero.getTamanio(),tablero.getTamanio());
             	//LLAMAR LLENAR TABLERO.
-            	App.activa.pnlAlign.setPreferredSize(new Dimension(300,200));
-            	frame.remove(App.jugar.panelJugar);
-            	frame.add(App.activa.pnlAlign);
+				activa.pnlAlign.setPreferredSize(new Dimension(300,200));
+            	frame.remove(jugar.panelJugar);
+            	frame.add(activa.pnlAlign);
             	break;
             case "Normal":
-            	App.jugar.frameNombre.setVisible(true);
+            	jugar.frameNombre.setVisible(true);
             	tablero.crearTablero(e.getActionCommand());
-            	App.activa.crearGrilla(tablero.getTamanio(), tablero.getTamanio());
+            	activa.crearGrilla(tablero.getTamanio(), tablero.getTamanio());
             	//LLAMAR LLENAR TABLERO.
-            	App.activa.pnlAlign.setPreferredSize(new Dimension(600,400));
-            	frame.remove(App.jugar.panelJugar);
-            	frame.add(App.activa.pnlAlign);
+            	activa.pnlAlign.setPreferredSize(new Dimension(600,400));
+            	frame.remove(jugar.panelJugar);
+            	frame.add(activa.pnlAlign);
             	break;
             case "Dificil":
-            	App.jugar.frameNombre.setVisible(true);
+            	jugar.frameNombre.setVisible(true);
             	tablero.crearTablero(e.getActionCommand());
-            	App.activa.crearGrilla(tablero.getTamanio(), tablero.getTamanio());
-            	//App.activa.
+            	activa.crearGrilla(tablero.getTamanio(), tablero.getTamanio());
+            	//activa.
             	//LLAMAR LLENAR TABLERO.
-            	App.activa.pnlAlign.setPreferredSize(new Dimension(800,700));
-            	frame.remove(App.jugar.panelJugar);
-            	frame.add(App.activa.pnlAlign);
+            	activa.pnlAlign.setPreferredSize(new Dimension(800,700));
+            	frame.remove(jugar.panelJugar);
+            	frame.add(activa.pnlAlign);
             	break;
             case "Registrar":
             	chequearNombre();
-            	//App.jugar.frameNombre.setVisible(false);
+            	//jugar.frameNombre.setVisible(false);
             	break;
             case "MenuPrincipal":
-            	frame.remove(App.activa.pnlAlign);
-            	frame.add(App.menuPrincipal.panelMenuPrincipal);
+            	frame.remove(activa.pnlAlign);
+            	frame.add(menuPrincipal.panelMenuPrincipal);
             	break;
             default:
             	break;
@@ -88,7 +107,7 @@ public class ControladorCentral implements ActionListener {
     	JPanel panel = new JPanel();
     	JTextArea texto = new JTextArea();
     	
-    	nombre = App.jugar.textField.getText().trim();
+    	nombre = jugar.textField.getText().trim();
     	String caracteresEspeciales = "!@#$%&*()'+,-./:;<=>?[]^_`{|}";
     	if (!(nombre.isEmpty()) || nombre.length() < 20) {
 			
@@ -112,11 +131,27 @@ public class ControladorCentral implements ActionListener {
     			}
     			else {
     				//Guardar el nombre en la DB
-    				App.jugar.frameNombre.setVisible(false);
+    				jugar.frameNombre.setVisible(false);
     			}
     		}
     	}
-    	App.jugar.textField.setText("");
+    	jugar.textField.setText("");
     	
     }
+
+    public JFrame getFrame() {
+    	return frame;
+	}
+
+	public MenuPrincipal getMenuPrincipal() {
+    	return menuPrincipal;
+	}
+
+	public Ayuda getAyuda() {
+    	return ayuda;
+	}
+
+	public Jugar getJugar(){
+    	return jugar;
+	}
 }

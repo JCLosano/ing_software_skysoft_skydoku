@@ -1,5 +1,6 @@
 package com.SkySoft.Skydoku;
 
+import com.SkySoft.Skydoku.Model.Tablero;
 import org.junit.Test;
 
 import com.SkySoft.Skydoku.controller.ControladorCentral;
@@ -15,15 +16,10 @@ public class IntegrationTest {
 	
 	@Test
 	public void Jugar_vMenuPrincipal() {
-		//new App();
-        /*JFrame frame = new JFrame();      
-        ControladorCentral controladorCentral = new ControladorCentral(frame);
-        MenuPrincipal menuPrincipal = new MenuPrincipal(frame, controladorCentral);
-        Jugar jugar = new Jugar(controladorCentral);
+        ControladorCentral controladorCentral = new ControladorCentral();
+
+        controladorCentral.getMenuPrincipal().getBotonJugar().doClick();
         
-        JButton botonJugar = menuPrincipal.botonJugar();
-        botonJugar.doClick();
-        
-        assertEquals(true, jugar.panelJugar.isShowing());*/
+        assertEquals(true, controladorCentral.getJugar().panelJugar.isShowing());
 	}
 }

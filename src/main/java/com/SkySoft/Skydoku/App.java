@@ -17,12 +17,12 @@ public class App {
     {
         try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
         catch (Exception ex) { ex.printStackTrace(); }
-        JFrame frame = new JFrame("SKYDOKU");        
+/*        JFrame frame = new JFrame("SKYDOKU");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        tablero = new Tablero();
+        tablero = new Tablero();*/
         
-        ControladorCentral controladorCentral = new ControladorCentral(frame, tablero);
-        
+        ControladorCentral controladorCentral = new ControladorCentral();
+/*
         menuPrincipal = new MenuPrincipal(frame, controladorCentral);
         
         frame.add(menuPrincipal.panelMenuPrincipal);
@@ -30,7 +30,7 @@ public class App {
         frame.setVisible(true);
         ayuda = new Ayuda(controladorCentral);
         jugar = new Jugar(controladorCentral);
-        activa = new Activa(controladorCentral, tablero);
+        activa = new Activa(controladorCentral, tablero);*/
         
     }
 }
