@@ -63,8 +63,8 @@ public class ControladorCentral implements ActionListener {
             	activa.crearGrilla(tablero.getTamanio(),tablero.getTamanio());
             	//LLAMAR LLENAR TABLERO.
 				activa.pnlAlign.setPreferredSize(new Dimension(300,200));
-            	frame.remove(jugar.panelJugar);
-            	frame.add(activa.pnlAlign);
+/*            	frame.remove(jugar.panelJugar);
+            	frame.add(activa.pnlAlign);*/
             	break;
             case "Normal":
             	jugar.frameNombre.setVisible(true);
@@ -72,8 +72,8 @@ public class ControladorCentral implements ActionListener {
             	activa.crearGrilla(tablero.getTamanio(), tablero.getTamanio());
             	//LLAMAR LLENAR TABLERO.
             	activa.pnlAlign.setPreferredSize(new Dimension(600,400));
-            	frame.remove(jugar.panelJugar);
-            	frame.add(activa.pnlAlign);
+/*            	frame.remove(jugar.panelJugar);
+            	frame.add(activa.pnlAlign);*/
             	break;
             case "Dificil":
             	jugar.frameNombre.setVisible(true);
@@ -82,14 +82,17 @@ public class ControladorCentral implements ActionListener {
             	//activa.
             	//LLAMAR LLENAR TABLERO.
             	activa.pnlAlign.setPreferredSize(new Dimension(800,700));
-            	frame.remove(jugar.panelJugar);
-            	frame.add(activa.pnlAlign);
+/*            	frame.remove(jugar.panelJugar);
+            	frame.add(activa.pnlAlign);*/
             	break;
             case "Registrar":
-            	chequearNombre();
-            	//jugar.frameNombre.setVisible(false);
+            	if(chequearNombre()) {
+					frame.remove(jugar.panelJugar);
+					frame.add(activa.pnlAlign);
+					jugar.frameNombre.setVisible(false);
+				}
             	break;
-            case "MenuPrincipal":
+            case "Menu Principal":
             	frame.remove(activa.pnlAlign);
             	frame.add(menuPrincipal.panelMenuPrincipal);
             	break;
@@ -101,7 +104,7 @@ public class ControladorCentral implements ActionListener {
         frame.repaint();
     }
     
-    private void chequearNombre() {
+    private boolean chequearNombre() {
     	String nombre;
     	JFrame frame = new JFrame();
     	JPanel panel = new JPanel();
@@ -111,8 +114,7 @@ public class ControladorCentral implements ActionListener {
     	String caracteresEspeciales = "!@#$%&*()'+,-./:;<=>?[]^_`{|}";
     	if (!(nombre.isEmpty()) || nombre.length() < 20) {
 			
-    		for (int i=0; i < nombre.length() ; i++)
-    		{
+    		for (int i=0; i < nombre.length() ; i++) {
     			char ch = nombre.charAt(i);
     			if(caracteresEspeciales.contains(Character.toString(ch))) {
     	    		frame.setBounds(100, 100, 400, 200);
@@ -127,16 +129,20 @@ public class ControladorCentral implements ActionListener {
     				
     				panel.add(texto);
     				
-    				break;
+    				return false;
     			}
     			else {
     				//Guardar el nombre en la DB
-    				jugar.frameNombre.setVisible(false);
+    				//jugar.frameNombre.setVisible(false);
+					jugar.textField.setText("");
+    				return true;
     			}
     		}
     	}
-    	jugar.textField.setText("");
-    	
+		else {
+			return false;
+		}
+    	return false;
     }
 
     public JFrame getFrame() {
@@ -145,6 +151,10 @@ public class ControladorCentral implements ActionListener {
 
 	public MenuPrincipal getMenuPrincipal() {
     	return menuPrincipal;
+	}
+
+	public Activa getActiva(){
+    	return activa;
 	}
 
 	public Ayuda getAyuda() {

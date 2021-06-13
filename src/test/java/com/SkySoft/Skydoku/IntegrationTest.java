@@ -20,6 +20,29 @@ public class IntegrationTest {
 
         controladorCentral.getMenuPrincipal().getBotonJugar().doClick();
         
-        assertEquals(true, controladorCentral.getJugar().panelJugar.isShowing());
+        assertTrue(controladorCentral.getJugar().panelJugar.isShowing());
 	}
+
+	@Test
+	public void menuPrincipal_vActiva() {
+	    ControladorCentral controladorCentral = new ControladorCentral();
+
+	    controladorCentral.getActiva().getBotonMenuPrincipal().doClick();
+
+	    assertTrue(controladorCentral.getMenuPrincipal().panelMenuPrincipal.isShowing());
+    }
+
+/*    @Test
+	public void seleccionarFacil_vJugar() {
+		ControladorCentral controladorCentral = new ControladorCentral();
+
+		controladorCentral.getJugar().getBotonFacil().doClick();
+
+		controladorCentral.getJugar().getTextField().setText("oscar");
+
+		controladorCentral.getJugar().getBotonRegistrar().doClick();
+
+		assertTrue(controladorCentral.getActiva().);
+		//CHEQUEAR QUE SE ARME EL TABLERO DE TAMANIO 2
+	}*/
 }

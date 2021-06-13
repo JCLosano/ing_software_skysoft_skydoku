@@ -12,7 +12,8 @@ public class Jugar {
 	public JFrame frameNombre = new JFrame();
 	public JTextField textField = new JTextField();
 
-	JButton boton_facil, boton_normal, boton_dificil, boton_atras;
+	JButton boton_facil, boton_normal, boton_dificil
+			           , boton_atras, boton_registrar;
 	
 	public Jugar(ControladorCentral controladorCentral) 
 	{
@@ -48,7 +49,7 @@ public class Jugar {
 		panelNombre.add(textField);
 		textField.setColumns(10);
 		
-		JButton boton_registrar = new JButton("Registrar");
+		boton_registrar = new JButton("Registrar");
 		boton_registrar.setAlignmentX(Component.CENTER_ALIGNMENT);
 		boton_registrar.setAlignmentY(Component.BOTTOM_ALIGNMENT);
 		panelNombre.add(boton_registrar);
@@ -103,4 +104,11 @@ public class Jugar {
 		return boton_atras;
 	}
 
+	public JTextField getTextField() {
+		return textField;
+	}
+
+	public JButton getBotonRegistrar() {
+		return boton_registrar;
+	}
 }

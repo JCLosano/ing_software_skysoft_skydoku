@@ -26,7 +26,7 @@ public class Activa extends JPanel{
 	private int tamanioTablero;
 	private Tablero tablero;
 	
-	JButton btnNew;
+	JButton boton_menuPrincipal, boton_puntuaciones;
 	
 	public Activa(ControladorCentral controladorCentral, Tablero tablero) {
 		TitledBorder border;
@@ -57,12 +57,12 @@ public class Activa extends JPanel{
 		//JPanel panelBotones = new JPanel();
 		panelTiempoPuntuaciones.setLayout(new BoxLayout(panelTiempoPuntuaciones, BoxLayout.Y_AXIS));
 		
-		JButton boton_puntuaciones = agregarBoton("Puntuaciones", panelTiempoPuntuaciones);
+		boton_puntuaciones = agregarBoton("Puntuaciones", panelTiempoPuntuaciones);
 		boton_puntuaciones.addActionListener(controladorCentral);
 		
 		panelTiempoPuntuaciones.add(Box.createVerticalStrut(10));
         
-		JButton boton_menuPrincipal = agregarBoton("Menu Principal", panelTiempoPuntuaciones);
+		boton_menuPrincipal = agregarBoton("Menu Principal", panelTiempoPuntuaciones);
 		boton_menuPrincipal.addActionListener(controladorCentral);
 		
 		pnlAlign.add(panelTiempoPuntuaciones);
@@ -108,6 +108,10 @@ public class Activa extends JPanel{
         panel.add(boton);
         return boton;
     }
+
+    public JButton getBotonMenuPrincipal (){
+		return boton_menuPrincipal;
+	}
 }
 
 
