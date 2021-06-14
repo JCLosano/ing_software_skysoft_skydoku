@@ -37,13 +37,12 @@ public class ControladorSudoku implements MouseListener, KeyListener{
 	}
 	
 	private void agregarKeyListener() {
-		controladorCentral.getFrame().addKeyListener(this);
-		/*casillaGrande = controladorCentral.getActiva().getCasillaGrande();//panelActiva.addMouseListener(this);
+		casillaGrande = controladorCentral.getActiva().getCasillaGrande();//panelActiva.addMouseListener(this);
 		for(int y = 0; y < tablero.getTamanio(); y++) {
 			for(int x = 0; x < tablero.getTamanio(); x++) {
 				casillaGrande[y][x].addKeyListener(this);
 			}
-		}*/
+		}
 	}
 	
 	public void mouseClicked(MouseEvent e) {
