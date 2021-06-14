@@ -1,5 +1,9 @@
 package com.SkySoft.Skydoku.Model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class Normal implements Dificultad{
 	
 	private final int tamanio = 3;
@@ -8,18 +12,27 @@ public class Normal implements Dificultad{
 		return tamanio;
 	}
 	
-	public int[][] llenarTablero() {
-		int [][] numerosTablero = 
-		{{0, 3, 0, 2, 0, 1, 9, 0, 5,},
-		 {0, 0, 0, 0, 6, 0, 0, 0, 1,},
-		 {0, 2, 0, 4, 0, 9, 0, 0, 0,},
-		 {2, 8, 0, 6, 0, 0, 4, 0, 0,},
-		 {6, 0, 5, 0, 4, 0, 1, 0, 8,},
-		 {0, 0, 1, 0, 0, 5, 0, 7, 6,},
-		 {0, 0, 0, 7, 0, 2, 0, 1, 0,},
-		 {8, 0, 0, 0, 3, 0, 0, 0, 0,},
-		 {7, 0, 2, 5, 0, 4, 0, 8, 0,},
-		};
+	public int[][] llenarTablero() {		
+		int [][] numerosTablero = new int[tamanio*tamanio][tamanio*tamanio]; 
+		
+		int numero;
+		
+		File f = new File("./tableros/normal_1.txt");
+		
+		try  (Scanner entrada = new Scanner(f)) {
+    		while (entrada.hasNextInt()) {
+                for(int i = 0; i < tamanio*tamanio; i++) {
+                	for(int j = 0; j < tamanio*tamanio; j++) {
+                		numero = entrada.nextInt();
+                		numerosTablero[i][j] = numero;
+                	}
+                }
+    		}
+        }
+		
+		catch (FileNotFoundException e) {
+			System.out.println("No se encontró el archivo indicado.");
+		}
 		
 		return numerosTablero;
 	}

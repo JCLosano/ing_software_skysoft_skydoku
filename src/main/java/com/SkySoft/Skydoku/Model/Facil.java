@@ -1,5 +1,9 @@
 package com.SkySoft.Skydoku.Model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class Facil implements Dificultad{
 	
 	private final int tamanio = 2;
@@ -14,12 +18,26 @@ public class Facil implements Dificultad{
 	}
 	
 	public int[][] llenarTablero() {
-		int [][] numerosTablero = 
-		{{4, 0, 3, 0,},
-		 {0, 2, 0, 0,},
-		 {0, 0, 1, 0,},
-		 {0, 4, 0, 3,}
-		};
+		int [][] numerosTablero = new int[tamanio*tamanio][tamanio*tamanio]; 
+		
+		int numero;
+		
+		File f = new File("./tableros/facil_1.txt");
+		
+		try  (Scanner entrada = new Scanner(f)) {
+    		while (entrada.hasNextInt()) {
+                for(int i = 0; i < tamanio*tamanio; i++) {
+                	for(int j = 0; j < tamanio*tamanio; j++) {
+                		numero = entrada.nextInt();
+                		numerosTablero[i][j] = numero;
+                	}
+                }
+    		}
+        }
+		
+		catch (FileNotFoundException e) {
+			System.out.println("No se encontró el archivo indicado.");
+		}
 		
 		return numerosTablero;
 	}
