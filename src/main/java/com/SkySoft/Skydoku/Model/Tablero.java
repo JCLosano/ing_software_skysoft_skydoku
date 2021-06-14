@@ -39,4 +39,8 @@ public class Tablero {
     	return numerosTablero;
     }
     
+    public Dificultad getDificultad() {
+    	return dificultad;
+    }
+    
 }

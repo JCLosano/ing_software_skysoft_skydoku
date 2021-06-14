@@ -7,13 +7,14 @@ import java.util.Scanner;
 public class Normal implements Dificultad{
 	
 	private final int tamanio = 3;
+	private int[][] numerosTablero;
 	
 	public int tamanioTablero() {
 		return tamanio;
 	}
 	
 	public int[][] llenarTablero() {		
-		int [][] numerosTablero = new int[tamanio*tamanio][tamanio*tamanio]; 
+		numerosTablero = new int[tamanio*tamanio][tamanio*tamanio]; 
 		
 		int numero;
 		
@@ -35,5 +36,13 @@ public class Normal implements Dificultad{
 		}
 		
 		return numerosTablero;
+	}
+	
+	public int getNumero(int x, int y) {
+		return numerosTablero[y][x];
+	}
+	
+	public int setNumber(int x, int y, int number) {
+		return numerosTablero[y][x] = number;
 	}
 }

@@ -13,6 +13,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import com.SkySoft.Skydoku.Model.Tablero;
@@ -146,6 +147,10 @@ public class Activa extends JPanel{
 		return estado_grilla;
 	}
 
+	public JPanel[][] getCasillaGrande(){
+		return casillaGrande;
+	}
+	
 	public void setEstadoGrilla(boolean estado) {
 		estado_grilla = estado;
 	}

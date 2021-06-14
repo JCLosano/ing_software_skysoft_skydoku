@@ -5,7 +5,9 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import com.SkySoft.Skydoku.App;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import com.SkySoft.Skydoku.Model.Tablero;
 import com.SkySoft.Skydoku.view.Activa;
 import com.SkySoft.Skydoku.view.Ayuda;
@@ -20,6 +22,7 @@ public class ControladorCentral implements ActionListener {
 	Jugar jugar;
 	Activa activa;
 	int[][] numerosTablero;
+	ControladorSudoku controladorSudoku;
 	
     public ControladorCentral() {
     	frame = new JFrame("SKYDOKU");
@@ -35,6 +38,10 @@ public class ControladorCentral implements ActionListener {
     	ayuda = new Ayuda(this);
     	jugar = new Jugar(this);
 
+    }
+    
+    public void mouseClicked(MouseEvent e) {
+    	System.out.println(e.toString());
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -62,6 +69,7 @@ public class ControladorCentral implements ActionListener {
 				crearActiva();
 				activa.crearGrilla(tablero.getTamanio(), tablero.getTamanio());
 				activa.cargarTablero();
+				controladorSudoku = new ControladorSudoku(this, tablero);
 
             	//LLAMAR LLENAR TABLERO.
 				activa.pnlAlign.setPreferredSize(new Dimension(400,300));

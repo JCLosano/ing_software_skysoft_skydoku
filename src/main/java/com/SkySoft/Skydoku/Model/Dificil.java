@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Dificil implements Dificultad{
 	
 	private final int tamanio = 4;
+	private int [][] numerosTablero;
 	
 	public Dificil() {
 	}
@@ -16,7 +17,7 @@ public class Dificil implements Dificultad{
 	}
 	
 	public int [][] llenarTablero() {
-		int [][] numerosTablero = new int[tamanio*tamanio][tamanio*tamanio]; 
+		numerosTablero = new int[tamanio*tamanio][tamanio*tamanio]; 
 		
 		int numero;
 		
@@ -38,5 +39,13 @@ public class Dificil implements Dificultad{
 		}
 		
 		return numerosTablero;
+	}
+	
+	public int getNumero(int x, int y) {
+		return numerosTablero[y][x];
+	}
+	
+	public int setNumber(int x, int y, int number) {
+		return numerosTablero[y][x] = number;
 	}
 }
