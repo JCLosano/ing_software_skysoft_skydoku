@@ -64,7 +64,7 @@ public class ControladorCentral implements ActionListener {
 				activa.cargarTablero();
 
             	//LLAMAR LLENAR TABLERO.
-				activa.pnlAlign.setPreferredSize(new Dimension(300,200));
+				activa.pnlAlign.setPreferredSize(new Dimension(400,300));
             	break;
             case "Normal":
             	jugar.frameNombre.setVisible(true);
@@ -76,7 +76,7 @@ public class ControladorCentral implements ActionListener {
 
 
             	//LLAMAR LLENAR TABLERO.
-            	activa.pnlAlign.setPreferredSize(new Dimension(600,400));
+            	activa.pnlAlign.setPreferredSize(new Dimension(800,600));
             	break;
             case "Dificil":
             	jugar.frameNombre.setVisible(true);
@@ -88,7 +88,7 @@ public class ControladorCentral implements ActionListener {
 
 
             	//LLAMAR LLENAR TABLERO.
-            	activa.pnlAlign.setPreferredSize(new Dimension(800,700));
+            	activa.pnlAlign.setPreferredSize(new Dimension(1366,900));
             	break;
             case "Registrar":
             	if(chequearNombre()) {
