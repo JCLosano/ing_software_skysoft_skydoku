@@ -26,6 +26,7 @@ public class Activa extends JPanel{
 	private int tamanioTablero;
 	private Tablero tablero;
 	private boolean estado_grilla;
+	private int[][] numerosTablero;
 	
 	JButton boton_menuPrincipal, boton_puntuaciones;
 	
@@ -46,14 +47,14 @@ public class Activa extends JPanel{
         JTextArea tiempo = new JTextArea();
         tiempo.setWrapStyleWord(false);
         tiempo.setRows(1);
-		tiempo.setText("HOLA JUANCITO");
+		tiempo.setText(" ");
 		tiempo.setEditable(false);
 		panelTiempoPuntuaciones.add(tiempo);
 		
         JTextArea puntuaciones = new JTextArea();
         puntuaciones.setWrapStyleWord(false);
         puntuaciones.setRows(1);
-        puntuaciones.setText("HOLA JUANCITO");
+        puntuaciones.setText(" ");
         puntuaciones.setEditable(false);
 		panelTiempoPuntuaciones.add(puntuaciones);
 		
@@ -88,10 +89,12 @@ public class Activa extends JPanel{
         GridLayout grilla = new GridLayout(filas, columnas);
         
         casillaGrande = new JPanel[filas][columnas];
+        
         for (int y = 0; y < columnas; y++) {
             for (int x = 0; x < filas; x++) {
                 casillaGrande[y][x] = new JPanel(grilla);
                 casillaGrande[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
+            	//casillaGrande[y][x].setPreferredSize(new Dimension(filas*63, columnas*63));
                 panelActiva.add(casillaGrande[y][x]);
             }
         }
@@ -117,6 +120,23 @@ public class Activa extends JPanel{
     public JButton getBotonMenuPrincipal (){
 		return boton_menuPrincipal;
 	}
+    
+    public void cargarTablero() {
+    	
+    	numerosTablero = tablero.getNumerosTablero();
+    	
+    	for(int y = 0; y < tamanioTablero; y++) {
+    		for(int x = 0; x < tamanioTablero; x++) {
+    			if(numerosTablero[x][y] > 0) {
+    				casillaChica[x][y].setBackground(Color.WHITE);
+    				casillaChica[x][y].setText(numerosTablero[x][y] + "");
+    			}
+    			else {
+    				casillaChica[x][y].setText("");
+    			}
+    		}
+    	}
+    }
 
 	public int getTamanioTablero() {
 		return tamanioTablero;

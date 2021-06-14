@@ -19,7 +19,7 @@ public class ControladorCentral implements ActionListener {
 	Ayuda ayuda;
 	Jugar jugar;
 	Activa activa;
-	//int[][] numerosTablero;
+	int[][] numerosTablero;
 	
     public ControladorCentral() {
     	frame = new JFrame("SKYDOKU");
@@ -58,9 +58,10 @@ public class ControladorCentral implements ActionListener {
             case "Facil":
             	jugar.frameNombre.setVisible(true);
             	tablero.crearTablero(e.getActionCommand());
-
+            	
 				crearActiva();
 				activa.crearGrilla(tablero.getTamanio(), tablero.getTamanio());
+				activa.cargarTablero();
 
             	//LLAMAR LLENAR TABLERO.
 				activa.pnlAlign.setPreferredSize(new Dimension(300,200));
@@ -71,6 +72,7 @@ public class ControladorCentral implements ActionListener {
 
 				crearActiva();
 				activa.crearGrilla(tablero.getTamanio(), tablero.getTamanio());
+				activa.cargarTablero();
 
 
             	//LLAMAR LLENAR TABLERO.
@@ -82,6 +84,7 @@ public class ControladorCentral implements ActionListener {
 
 				crearActiva();
 				activa.crearGrilla(tablero.getTamanio(), tablero.getTamanio());
+				activa.cargarTablero();
 
 
             	//LLAMAR LLENAR TABLERO.

@@ -16,9 +16,9 @@ public class Casilla extends JLabel{
         this.fila = fila;
         this.columna = columna;
 
-        setPreferredSize(new Dimension(40, 40));
+        setPreferredSize(new Dimension(63, 50));
         setBorder(BorderFactory.createLineBorder(Color.GRAY));
-        setFont(new Font(Font.DIALOG, Font.PLAIN, 20));
+        setFont(new Font(Font.DIALOG, Font.PLAIN, 15));
         setOpaque(true);
     }
     
