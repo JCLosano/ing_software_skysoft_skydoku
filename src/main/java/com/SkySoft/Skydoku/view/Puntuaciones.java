@@ -14,7 +14,6 @@ public class Puntuaciones {
 	private JFrame ventanaPuntuaciones;
 	
 	public Puntuaciones() {
-
 		ventanaPuntuaciones = new JFrame();
 		
 		mibarra1 = new JScrollPane();
