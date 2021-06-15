@@ -154,6 +154,9 @@ public class Activa extends JPanel{
 	public void setEstadoGrilla(boolean estado) {
 		estado_grilla = estado;
 	}
+	public Casilla[][] getCasillaChica() {
+		return casillaChica;
+	}
 }
 
 

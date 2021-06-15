@@ -2,10 +2,7 @@ package com.SkySoft.Skydoku.controller;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.KeyListener;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
 import javax.swing.JPanel;
 
@@ -18,6 +15,7 @@ public class ControladorSudoku implements MouseListener, KeyListener{
 	Tablero tablero;
 	int teclaPresionada;
 	JPanel[][] casillaGrande;
+	Casilla[][] casillaChica;
 	Casilla casillaAnterior;
 	
 	public ControladorSudoku(ControladorCentral controladorCentral, Tablero tablero) {
@@ -37,10 +35,10 @@ public class ControladorSudoku implements MouseListener, KeyListener{
 	}
 	
 	private void agregarKeyListener() {
-		casillaGrande = controladorCentral.getActiva().getCasillaGrande();//panelActiva.addMouseListener(this);
-		for(int y = 0; y < tablero.getTamanio(); y++) {
-			for(int x = 0; x < tablero.getTamanio(); x++) {
-				casillaGrande[y][x].addKeyListener(this);
+		casillaChica = controladorCentral.getActiva().getCasillaChica();
+		for(int y = 0; y < tablero.getTamanio()*tablero.getTamanio(); y++) {
+			for(int x = 0; x < tablero.getTamanio()*tablero.getTamanio(); x++) {
+				casillaChica[y][x].addKeyListener(this);
 			}
 		}
 	}
@@ -115,5 +113,4 @@ public class ControladorSudoku implements MouseListener, KeyListener{
 		System.out.println(teclaPresionada);
 		
 	}
-	
 }
