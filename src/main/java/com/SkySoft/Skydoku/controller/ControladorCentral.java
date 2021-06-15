@@ -11,6 +11,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import com.SkySoft.Skydoku.Model.DBUsuarios;
 import com.SkySoft.Skydoku.Model.Tablero;
 import com.SkySoft.Skydoku.view.Activa;
 import com.SkySoft.Skydoku.view.Ayuda;
@@ -26,8 +27,11 @@ public class ControladorCentral implements ActionListener {
 	Jugar jugar;
 	Activa activa;
 	Puntuaciones puntuaciones;
-	int[][] numerosTablero;
+	DBUsuarios dbUsuarios;
 	ControladorSudoku controladorSudoku;
+	String nombre;
+
+	int[][] numerosTablero;
 
     public ControladorCentral() {
     	frame = new JFrame("SKYDOKU");
@@ -42,6 +46,7 @@ public class ControladorCentral implements ActionListener {
 
     	ayuda = new Ayuda(this);
     	jugar = new Jugar(this);
+    	dbUsuarios = new DBUsuarios();
     	//puntuaciones = new Puntuaciones();
 
     }
@@ -111,6 +116,7 @@ public class ControladorCentral implements ActionListener {
             	break;
             case "Registrar":
             	if(chequearNombre()) {
+            		dbUsuarios.guardarNombre(nombre);
 					frame.remove(jugar.panelJugar);
 					frame.add(activa.pnlAlign);
 					jugar.frameNombre.setVisible(false);
@@ -130,7 +136,6 @@ public class ControladorCentral implements ActionListener {
     }
     
     private boolean chequearNombre() {
-    	String nombre;
     	JFrame frame = new JFrame();
     	JPanel panel = new JPanel();
     	JTextArea texto = new JTextArea();
