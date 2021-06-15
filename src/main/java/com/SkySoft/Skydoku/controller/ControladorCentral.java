@@ -8,11 +8,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import com.SkySoft.Skydoku.Model.Tablero;
 import com.SkySoft.Skydoku.view.Activa;
 import com.SkySoft.Skydoku.view.Ayuda;
 import com.SkySoft.Skydoku.view.Jugar;
 import com.SkySoft.Skydoku.view.MenuPrincipal;
+import com.SkySoft.Skydoku.view.Puntuaciones;
 
 public class ControladorCentral implements ActionListener {
 	JFrame frame;
@@ -21,9 +25,10 @@ public class ControladorCentral implements ActionListener {
 	Ayuda ayuda;
 	Jugar jugar;
 	Activa activa;
+	Puntuaciones puntuaciones;
 	int[][] numerosTablero;
 	ControladorSudoku controladorSudoku;
-	
+
     public ControladorCentral() {
     	frame = new JFrame("SKYDOKU");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,6 +42,7 @@ public class ControladorCentral implements ActionListener {
 
     	ayuda = new Ayuda(this);
     	jugar = new Jugar(this);
+    	//puntuaciones = new Puntuaciones();
 
     }
     
@@ -61,6 +67,11 @@ public class ControladorCentral implements ActionListener {
             case "AtrasAyuda":
             	frame.remove(ayuda.panelAyuda);
             	frame.add(menuPrincipal.panelMenuPrincipal);
+            	break;
+            case "PuntuacionesMenu":
+            	puntuaciones = new Puntuaciones();
+            	//frame.remove(menuPrincipal.panelMenuPrincipal);
+            	//frame.add(puntuaciones.getPanelPuntuaciones());
             	break;
             case "Facil":
             	jugar.frameNombre.setVisible(true);
@@ -159,7 +170,7 @@ public class ControladorCentral implements ActionListener {
     	return false;
     }
 
-    public void crearActiva() {
+	public void crearActiva() {
     	activa = new Activa(this, tablero);
 	}
 

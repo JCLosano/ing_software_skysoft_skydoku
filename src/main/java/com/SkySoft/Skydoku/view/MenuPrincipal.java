@@ -29,6 +29,7 @@ public class MenuPrincipal {
         
         boton_puntuaciones = botonPuntuaciones();
         boton_puntuaciones.addActionListener(controladorCentral);
+        boton_puntuaciones.setActionCommand("PuntuacionesMenu");
         
         //frame.pack();
         //frame.setVisible(true);
