@@ -11,6 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -20,6 +21,7 @@ import com.SkySoft.Skydoku.Model.Tablero;
 import com.SkySoft.Skydoku.controller.ControladorCentral;
 
 public class Activa extends JPanel{
+	private JTextField text;
 	public JPanel panelActiva = new JPanel();
 	public JPanel pnlAlign = new JPanel();
 	private JPanel[][] casillaGrande;
@@ -59,16 +61,30 @@ public class Activa extends JPanel{
         puntuaciones.setEditable(false);
 		panelTiempoPuntuaciones.add(puntuaciones);
 		
+		JLabel label = new JLabel();
+		label.setText("Inserte el número a ingresar en el tablero");
+		
+		panelTiempoPuntuaciones.add(label);
+		
+		panelTiempoPuntuaciones.add(Box.createVerticalStrut(5));
+		
+		text = new JTextField();
+		
 		//JPanel panelBotones = new JPanel();
 		panelTiempoPuntuaciones.setLayout(new BoxLayout(panelTiempoPuntuaciones, BoxLayout.Y_AXIS));
 		
-		boton_puntuaciones = agregarBoton("Puntuaciones", panelTiempoPuntuaciones);
-		boton_puntuaciones.addActionListener(controladorCentral);
+		panelTiempoPuntuaciones.add(Box.createVerticalStrut(10));
+		
+		panelTiempoPuntuaciones.add(text);
 		
 		panelTiempoPuntuaciones.add(Box.createVerticalStrut(10));
+		
+		boton_puntuaciones = agregarBoton("Puntuaciones", panelTiempoPuntuaciones);
+		boton_puntuaciones.addActionListener(controladorCentral);
         
 		boton_menuPrincipal = agregarBoton("Menu Principal", panelTiempoPuntuaciones);
 		boton_menuPrincipal.addActionListener(controladorCentral);
+		
 		
 		pnlAlign.add(panelTiempoPuntuaciones);
 		//pnlAlign.add(panelBotones);
@@ -153,6 +169,10 @@ public class Activa extends JPanel{
 	
 	public void setEstadoGrilla(boolean estado) {
 		estado_grilla = estado;
+	}
+	
+	public JTextField getTextField() {
+		return text;
 	}
 }
 

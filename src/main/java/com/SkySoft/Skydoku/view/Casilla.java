@@ -32,6 +32,7 @@ public class Casilla extends JLabel{
     
     public void setNumber(int number, boolean userInput) {
         setForeground(userInput ? Color.BLUE : Color.BLACK);
-        setText(number > 0 ? number + "" : "");
+        setText(number > 0 && number < 17 ? number + "" : "");
     }
+
 }

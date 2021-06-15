@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
@@ -19,16 +20,19 @@ public class ControladorSudoku implements MouseListener, KeyListener{
 	int teclaPresionada;
 	JPanel[][] casillaGrande;
 	Casilla casillaAnterior;
+	ArrayList<String> string;
 	
 	public ControladorSudoku(ControladorCentral controladorCentral, Tablero tablero) {
 		this.controladorCentral = controladorCentral;
 		this.tablero = tablero;
+		string = new ArrayList<String>();
+		agregarNumeros();
 		agregarMouseListener();
 		agregarKeyListener();
 	}
 	
 	private void agregarMouseListener() {
-		casillaGrande = controladorCentral.getActiva().getCasillaGrande();//panelActiva.addMouseListener(this);
+		casillaGrande = controladorCentral.getActiva().getCasillaGrande();
 		for(int y = 0; y < tablero.getTamanio(); y++) {
 			for(int x = 0; x < tablero.getTamanio(); x++) {
 				casillaGrande[y][x].addMouseListener(this);
@@ -37,16 +41,10 @@ public class ControladorSudoku implements MouseListener, KeyListener{
 	}
 	
 	private void agregarKeyListener() {
-		casillaGrande = controladorCentral.getActiva().getCasillaGrande();//panelActiva.addMouseListener(this);
-		for(int y = 0; y < tablero.getTamanio(); y++) {
-			for(int x = 0; x < tablero.getTamanio(); x++) {
-				casillaGrande[y][x].addKeyListener(this);
-			}
-		}
+		controladorCentral.getActiva().getTextField().addKeyListener(this);
 	}
 	
 	public void mouseClicked(MouseEvent e) {
-		//System.out.println("hola");
 	}
 
 	@Override
@@ -63,6 +61,7 @@ public class ControladorSudoku implements MouseListener, KeyListener{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
+		controladorCentral.getFrame().requestFocusInWindow();
 		JPanel panel = (JPanel)e.getSource();
         Component component = panel.getComponentAt(e.getPoint());
         if (component instanceof Casilla) {
@@ -73,16 +72,13 @@ public class ControladorSudoku implements MouseListener, KeyListener{
             if (e.getButton() == MouseEvent.BUTTON1 && (tablero.getDificultad().getNumero(x, y) == 0)) {
             	if (casillaAnterior != null)
             		casillaAnterior.setBackground(null);
-            	casilla.setBackground(Color.BLUE);
+            	casilla.setBackground(Color.LIGHT_GRAY);
             	casillaAnterior = casilla;
-                /*int number = 1;
-            	if (number == -1)
-                    return;
-                tablero.getDificultad().setNumber(x, y, number);
-                casilla.setNumber(number, true);*/
+
             } else if (e.getButton() == MouseEvent.BUTTON3 && !casilla.getForeground().equals(Color.BLACK)) {
             	tablero.getDificultad().setNumber(x, y, 0);
                 casilla.setNumber(0, false);
+                System.out.println("Descuenta 10 puntos");
             }
         }
 }
@@ -95,25 +91,36 @@ public class ControladorSudoku implements MouseListener, KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		System.out.println("hofofoasds");
-		teclaPresionada = Character.getNumericValue(e.getKeyChar());
-		System.out.println(teclaPresionada);
+		char[] numero = {' ', ' '};
+		String Numero;
+		String texto;
+		if(e.getKeyChar() == KeyEvent.VK_ENTER) {
+			texto = controladorCentral.getActiva().getTextField().getText();
+			if(!texto.isEmpty() && string.contains(texto) && !(casillaAnterior.getForeground().equals(Color.BLUE))) {
+				for(int i = 0; i < controladorCentral.getActiva().getTextField().getText().length(); i++) {
+					char ch = controladorCentral.getActiva().getTextField().getText().charAt(i);
+						numero[i] = ch;
+				}
+				Numero = new String(numero).trim();
+				casillaAnterior.setNumber(Integer.parseInt(Numero), true);
+			}
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("hofofoasds");
-		teclaPresionada = Character.getNumericValue(e.getKeyChar());
-		System.out.println(teclaPresionada);
+
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		System.out.println("hofofoasds");
-		teclaPresionada = Character.getNumericValue(e.getKeyChar());
-		System.out.println(teclaPresionada);
-		
+	}
+	
+	private void agregarNumeros() {
+		for(int i = 1; i < 17; i++) {
+			string.add(i + "");
+		}
 	}
 	
 }
