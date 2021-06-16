@@ -15,8 +15,9 @@ public class Puntuaciones {
 	private JScrollPane mibarra1, mibarra2;
 	private JTable mitabla1, mitabla2;
 	private JFrame ventanaPuntuaciones;
+	private static Puntuaciones puntuaciones;
 	
-	public Puntuaciones() {
+	private Puntuaciones() {
 		ventanaPuntuaciones = new JFrame();
 		
 		mibarra1 = new JScrollPane();
@@ -33,6 +34,13 @@ public class Puntuaciones {
 		ventanaPuntuaciones.setTitle("Tabla de Puntuaciones");
 		ventanaPuntuaciones.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		ventanaPuntuaciones.setVisible(true);		
+	}
+
+	public static Puntuaciones getInstance() {
+		if (puntuaciones == null) {
+			return new Puntuaciones();
+		}
+		else return puntuaciones;
 	}
 	
 	public void crearTablaActual() {

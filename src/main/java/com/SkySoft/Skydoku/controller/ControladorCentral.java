@@ -35,6 +35,7 @@ public class ControladorCentral implements ActionListener {
 
 		menuPrincipal = new MenuPrincipal(frame, this);
     	tablero = new Tablero();
+    	//puntuaciones = Puntuaciones.getInstance();
 
 		frame.add(menuPrincipal.panelMenuPrincipal);
 		frame.pack();
@@ -69,10 +70,13 @@ public class ControladorCentral implements ActionListener {
             	frame.add(menuPrincipal.panelMenuPrincipal);
             	break;
             case "PuntuacionesMenu":
-            	puntuaciones = new Puntuaciones();
+            	puntuaciones = Puntuaciones.getInstance();
             	//frame.remove(menuPrincipal.panelMenuPrincipal);
             	//frame.add(puntuaciones.getPanelPuntuaciones());
             	break;
+			case "Puntuaciones":
+				puntuaciones = Puntuaciones.getInstance();
+				break;
             case "Facil":
             	jugar.frameNombre.setVisible(true);
             	tablero.crearTablero(e.getActionCommand());
