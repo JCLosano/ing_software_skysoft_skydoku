@@ -48,4 +48,16 @@ public class Dificil implements Dificultad{
 	public int setNumber(int x, int y, int number) {
 		return numerosTablero[y][x] = number;
 	}
+
+	@Override
+	public int getCantidadCeros() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getNumerosResueltos(int x, int y) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

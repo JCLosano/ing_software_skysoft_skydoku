@@ -77,7 +77,7 @@ public class Puntuaciones implements Observer{
 
 		mitabla1 = new JTable(model1);
 		mitabla1.setEnabled(false);
-		mitabla1.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		//mitabla1.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		mibarra1.setViewportView(mitabla1);
 	}
 	
@@ -93,7 +93,7 @@ public class Puntuaciones implements Observer{
 		
 		mitabla2 = new JTable(model2);// creamos la instancia de la tabla
 		mitabla2.setEnabled(false);
-		mitabla2.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		//mitabla2.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		mibarra2.setViewportView(mitabla2);
 	}
 	

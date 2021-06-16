@@ -25,6 +25,7 @@ public class ControladorSudoku implements MouseListener, KeyListener{
 	Casilla casillaAnterior;
 	ArrayList<String> string;
 	DBPuntuaciones db_puntuaciones;
+	int flagCeros;
 	
 	public ControladorSudoku(ControladorCentral controladorCentral, Tablero tablero, DBPuntuaciones db_puntuaciones) {
 		this.controladorCentral = controladorCentral;
@@ -34,6 +35,7 @@ public class ControladorSudoku implements MouseListener, KeyListener{
 		agregarNumeros();
 		agregarMouseListener();
 		agregarKeyListener();
+		flagCeros = 0;
 	}
 	
 	private void agregarMouseListener() {
@@ -75,18 +77,49 @@ public class ControladorSudoku implements MouseListener, KeyListener{
             int y = casilla.getColumna();
 
             if (e.getButton() == MouseEvent.BUTTON1 && (tablero.getDificultad().getNumero(x, y) == 0)) {
+            	System.out.println("numero resuelto: " + tablero.getDificultad().getNumerosResueltos(x, y));
             	if (casillaAnterior != null)
             		casillaAnterior.setBackground(null);
             	casilla.setBackground(Color.LIGHT_GRAY);
             	casillaAnterior = casilla;
-
             } else if (e.getButton() == MouseEvent.BUTTON3 && !casilla.getForeground().equals(Color.BLACK)) {
             	tablero.getDificultad().setNumber(x, y, 0);
                 casilla.setNumber(0, false);
                 db_puntuaciones.descontarPuntos();
+                flagCeros--;
             }
         }
 }
+	
+	/*
+	 * 4 1 3 2
+	   3 2 4 1
+       2 3 1 4
+       1 4 2 3
+
+	 * 
+	 * */
+	
+	public boolean chequearTablero() {
+		int aux = 0;
+		for(int i = 0; i < tablero.getTamanio()*tablero.getTamanio(); i++) {
+        	for(int j = 0; j < tablero.getTamanio()*tablero.getTamanio(); j++) {
+        		if(tablero.getDificultad().getNumerosResueltos(i, j) == tablero.getDificultad().getNumero(i, j)) {
+        			aux++;
+        			System.out.println("aux vale: " + aux);
+        			/*System.out.println("Numero resuelto: " + tablero.getDificultad().getNumerosResueltos(i, j));
+        			System.out.println("Numero ingresado: " + tablero.getDificultad().getNumero(i, j));*/
+        			
+        		}
+        	}
+        }
+		if(aux == tablero.getTamanio()*tablero.getTamanio()*tablero.getTamanio()*tablero.getTamanio()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	
 	@Override
 	public void mouseReleased(MouseEvent e) {
@@ -108,8 +141,18 @@ public class ControladorSudoku implements MouseListener, KeyListener{
 				}
 				Numero = new String(numero).trim();
 				casillaAnterior.setNumber(Integer.parseInt(Numero), true);
+				flagCeros++;
 			}
+			if(flagCeros == tablero.getDificultad().getCantidadCeros()) {
+            	if(chequearTablero()) {
+            		System.out.println("termine el sudoku");
+            	}
+            	else {
+            		System.out.println("lleno mal el tablero");
+            	}
+            }
 		}
+		
 	}
 
 	@Override

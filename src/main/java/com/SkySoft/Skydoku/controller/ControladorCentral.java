@@ -77,10 +77,8 @@ public class ControladorCentral implements ActionListener {
 				crearActiva();
 				activa.crearGrilla(tablero.getTamanio(), tablero.getTamanio());
 				activa.cargarTablero();
-				controladorSudoku = new ControladorSudoku(this, tablero, dbPuntuaciones);
-
-            	//LLAMAR LLENAR TABLERO.
-				activa.pnlAlign.setPreferredSize(new Dimension(400,300));
+				
+				activa.pnlAlign.setPreferredSize(new Dimension(600, 300));
             	break;
             case "Normal":
             	jugar.frameNombre.setVisible(true);
@@ -90,24 +88,21 @@ public class ControladorCentral implements ActionListener {
 				activa.crearGrilla(tablero.getTamanio(), tablero.getTamanio());
 				activa.cargarTablero();
 
-
-            	//LLAMAR LLENAR TABLERO.
-            	activa.pnlAlign.setPreferredSize(new Dimension(800,600));
+            	activa.pnlAlign.setPreferredSize(new Dimension(900,600));
             	break;
             case "Dificil":
             	jugar.frameNombre.setVisible(true);
             	tablero.crearTablero(e.getActionCommand());
-
+            	
 				crearActiva();
 				activa.crearGrilla(tablero.getTamanio(), tablero.getTamanio());
 				activa.cargarTablero();
 
-
-            	//LLAMAR LLENAR TABLERO.
-            	activa.pnlAlign.setPreferredSize(new Dimension(1366,900));
+            	activa.pnlAlign.setPreferredSize(new Dimension(1500,900));
             	break;
             case "Registrar":
             	if(chequearNombre()) {
+            		controladorSudoku = new ControladorSudoku(this, tablero, dbPuntuaciones);
             		dbPuntuaciones.setPuntuacion(1000);
             		dbPuntuaciones.guardarNombre(nombre);
 					frame.remove(jugar.panelJugar);
