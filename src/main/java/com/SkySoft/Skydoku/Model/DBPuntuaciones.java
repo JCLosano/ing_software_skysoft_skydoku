@@ -1,10 +1,12 @@
 package com.SkySoft.Skydoku.Model;
 
 
+import com.SkySoft.Skydoku.view.Observer;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class DBPuntuaciones {
+public class DBPuntuaciones implements Subject{
 
     String nombreActual;
     ArrayList<ArrayList<String>> puntuaciones;
@@ -36,6 +38,21 @@ public class DBPuntuaciones {
             System.out.println(puntuaciones.get(i).get(0));
         }
         System.out.println();
+
+    }
+
+    @Override
+    public void registerObserver(Observer o) {
+
+    }
+
+    @Override
+    public void removeObserver(Observer o) {
+
+    }
+
+    @Override
+    public void notifyObservers() {
 
     }
 }
