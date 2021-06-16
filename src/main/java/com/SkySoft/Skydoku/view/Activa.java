@@ -20,7 +20,9 @@ import javax.swing.border.TitledBorder;
 import com.SkySoft.Skydoku.Model.Tablero;
 import com.SkySoft.Skydoku.controller.ControladorCentral;
 
-public class Activa extends JPanel {
+
+public class Activa extends JPanel implements Observer{
+
 	private JTextField text;
 	public JPanel panelActiva = new JPanel();
 	public JPanel pnlAlign = new JPanel();
@@ -172,6 +174,11 @@ public class Activa extends JPanel {
 
 	public JTextField getTextField() {
 		return text;
+	}
+
+	@Override
+	public void update() {
+		//TODO
 	}
 }
 
