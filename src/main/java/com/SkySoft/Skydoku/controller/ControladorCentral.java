@@ -77,7 +77,6 @@ public class ControladorCentral implements ActionListener {
 				crearActiva();
 				activa.crearGrilla(tablero.getTamanio(), tablero.getTamanio());
 				activa.cargarTablero();
-				controladorSudoku = new ControladorSudoku(this, tablero);
 
             	//LLAMAR LLENAR TABLERO.
 				activa.pnlAlign.setPreferredSize(new Dimension(400,300));
@@ -112,6 +111,7 @@ public class ControladorCentral implements ActionListener {
 					frame.remove(jugar.panelJugar);
 					frame.add(activa.pnlAlign);
 					jugar.frameNombre.setVisible(false);
+					controladorSudoku = new ControladorSudoku(this, tablero);
 				}
             	break;
             case "Menu Principal":
