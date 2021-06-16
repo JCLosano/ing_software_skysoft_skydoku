@@ -14,6 +14,7 @@ public class Casilla extends JLabel {
     private int fila;
     private int columna;
     private JTextField numero;
+    int numeroIngresado;
     
     public Casilla(int fila, int columna) {
     	super("", CENTER);
@@ -36,6 +37,7 @@ public class Casilla extends JLabel {
     }
     
     public void setNumber(int number, boolean userInput) {
+    	numeroIngresado = number;
         setForeground(userInput ? Color.BLUE : Color.BLACK);
         setText(number > 0 && number < 17 ? number + "" : "");
     }

@@ -77,7 +77,7 @@ public class ControladorSudoku implements MouseListener, KeyListener{
             int y = casilla.getColumna();
 
             if (e.getButton() == MouseEvent.BUTTON1 && (tablero.getDificultad().getNumero(x, y) == 0)) {
-            	System.out.println("numero resuelto: " + tablero.getDificultad().getNumerosResueltos(x, y));
+            	//System.out.println("numero resuelto: " + tablero.getDificultad().getNumerosResueltos(x, y));
             	if (casillaAnterior != null)
             		casillaAnterior.setBackground(null);
             	casilla.setBackground(Color.LIGHT_GRAY);
@@ -91,25 +91,12 @@ public class ControladorSudoku implements MouseListener, KeyListener{
         }
 }
 	
-	/*
-	 * 4 1 3 2
-	   3 2 4 1
-       2 3 1 4
-       1 4 2 3
-
-	 * 
-	 * */
-	
 	public boolean chequearTablero() {
 		int aux = 0;
 		for(int i = 0; i < tablero.getTamanio()*tablero.getTamanio(); i++) {
         	for(int j = 0; j < tablero.getTamanio()*tablero.getTamanio(); j++) {
-        		if(tablero.getDificultad().getNumerosResueltos(i, j) == tablero.getDificultad().getNumero(i, j)) {
-        			aux++;
-        			System.out.println("aux vale: " + aux);
-        			/*System.out.println("Numero resuelto: " + tablero.getDificultad().getNumerosResueltos(i, j));
-        			System.out.println("Numero ingresado: " + tablero.getDificultad().getNumero(i, j));*/
-        			
+        		if(tablero.getDificultad().getNumerosResueltos(i, j) == tablero.getDificultad().getNumero(i,j)) {
+        			aux++;		
         		}
         	}
         }
@@ -132,6 +119,8 @@ public class ControladorSudoku implements MouseListener, KeyListener{
 		char[] numero = {' ', ' '};
 		String Numero;
 		String texto;
+		int fila;
+		int columna;
 		if(e.getKeyChar() == KeyEvent.VK_ENTER) {
 			texto = controladorCentral.getActiva().getTextField().getText();
 			if(!texto.isEmpty() && string.contains(texto) && !(casillaAnterior.getForeground().equals(Color.BLUE))) {
@@ -141,11 +130,16 @@ public class ControladorSudoku implements MouseListener, KeyListener{
 				}
 				Numero = new String(numero).trim();
 				casillaAnterior.setNumber(Integer.parseInt(Numero), true);
+				fila = casillaAnterior.getFila();
+				columna = casillaAnterior.getColumna();
+				
+				tablero.getDificultad().setNumber(fila, columna, Integer.parseInt(Numero));
 				flagCeros++;
 			}
 			if(flagCeros == tablero.getDificultad().getCantidadCeros()) {
             	if(chequearTablero()) {
             		System.out.println("termine el sudoku");
+            		db_puntuaciones.getTimer().stop();
             	}
             	else {
             		System.out.println("lleno mal el tablero");

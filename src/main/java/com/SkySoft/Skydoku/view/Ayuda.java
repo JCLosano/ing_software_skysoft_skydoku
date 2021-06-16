@@ -48,14 +48,18 @@ public class Ayuda{
 				+ "Reglas:\r\n"
 				+ "\r\n"
 				+ "Regla 1: hay que completar las casillas vacías con un solo número.\r\n"
-				+ "\r\n"
 				+ "Regla 2: en una misma fila no puede haber números repetidos.\r\n"
-				+ "\r\n"
 				+ "Regla 3: en una misma columna no puede haber números repetidos.\r\n"
-				+ "\r\n"
 				+ "Regla 4: en una misma región no puede haber números repetidos.\r\n"
+				+ "Regla 5: la solución de un sudoku es única."
 				+ "\r\n"
-				+ "Regla 5: la solución de un sudoku es única.");
+				+ "\r\n"
+				+ "Ingreso de numero:\r\n"
+				+ "Debe hacer clic en la casilla, luego seleccionar el cuadro de texto debajo\r\n"
+				+ "a la izquierda, ingresar un numero del 1 al 16 y apretar enter.\r\n"
+				+ "\r\n"
+				+ "Borrado de numero:\r\n"
+				+ "Debe hacer clic derecho sobre la casilla, se le restaran 10 puntos.");
 		texto.setEditable(false);
     	return texto;
     }
