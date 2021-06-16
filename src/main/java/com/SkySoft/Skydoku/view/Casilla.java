@@ -3,13 +3,17 @@ package com.SkySoft.Skydoku.view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
+import javax.swing.*;
 
-public class Casilla extends JLabel{
+public class Casilla extends JLabel {
     private int fila;
     private int columna;
+    private JTextField numero;
     
     public Casilla(int fila, int columna) {
     	super("", CENTER);
@@ -20,6 +24,7 @@ public class Casilla extends JLabel{
         setBorder(BorderFactory.createLineBorder(Color.GRAY));
         setFont(new Font(Font.DIALOG, Font.PLAIN, 15));
         setOpaque(true);
+        setFocusable(true);
     }
     
     public int getFila() {

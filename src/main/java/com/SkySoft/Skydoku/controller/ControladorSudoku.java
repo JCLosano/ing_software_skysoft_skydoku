@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
+
 import javax.swing.JPanel;
 
 import com.SkySoft.Skydoku.Model.Tablero;
@@ -19,6 +20,7 @@ public class ControladorSudoku implements MouseListener, KeyListener{
 	Tablero tablero;
 	int teclaPresionada;
 	JPanel[][] casillaGrande;
+	Casilla[][] casillaChica;
 	Casilla casillaAnterior;
 	ArrayList<String> string;
 	
@@ -122,5 +124,4 @@ public class ControladorSudoku implements MouseListener, KeyListener{
 			string.add(i + "");
 		}
 	}
-	
 }
