@@ -1,10 +1,7 @@
 package com.SkySoft.Skydoku.view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
@@ -15,8 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import javax.swing.border.TitledBorder;
 
+import com.SkySoft.Skydoku.Model.DBPuntuaciones;
 import com.SkySoft.Skydoku.Model.Tablero;
 import com.SkySoft.Skydoku.controller.ControladorCentral;
 
@@ -24,6 +23,10 @@ import com.SkySoft.Skydoku.controller.ControladorCentral;
 public class Activa extends JPanel implements Observer{
 
 	private JTextField text;
+	JTextArea tiempo;
+	JTextArea puntuaciones;
+//	private int segundos;
+	private DBPuntuaciones db_puntuaciones;
 	public JPanel panelActiva = new JPanel();
 	public JPanel pnlAlign = new JPanel();
 	private JPanel[][] casillaGrande;
@@ -35,10 +38,15 @@ public class Activa extends JPanel implements Observer{
 
 	JButton boton_menuPrincipal, boton_puntuaciones;
 
-	public Activa(ControladorCentral controladorCentral, Tablero tablero) {
+	public Activa(ControladorCentral controladorCentral, Tablero tablero, DBPuntuaciones db_puntuaciones) {
 		TitledBorder border;
 		border = crearBorder();
+		
+//		segundos = 0;
 
+		this.db_puntuaciones = db_puntuaciones;
+		db_puntuaciones.registerObserver(this);
+		
 		this.tablero = tablero;
 
 		estado_grilla = false;
@@ -49,17 +57,17 @@ public class Activa extends JPanel implements Observer{
 
 		panelTiempoPuntuaciones.setBorder(BorderFactory.createTitledBorder("Tiempo y Puntuaciones"));
 
-		JTextArea tiempo = new JTextArea();
+		tiempo = new JTextArea();
 		tiempo.setWrapStyleWord(false);
 		tiempo.setRows(1);
-		tiempo.setText(" ");
+		tiempo.setText("");
 		tiempo.setEditable(false);
 		panelTiempoPuntuaciones.add(tiempo);
 
-		JTextArea puntuaciones = new JTextArea();
+		puntuaciones = new JTextArea();
 		puntuaciones.setWrapStyleWord(false);
 		puntuaciones.setRows(1);
-		puntuaciones.setText(" ");
+		puntuaciones.setText("1000");
 		puntuaciones.setEditable(false);
 		panelTiempoPuntuaciones.add(puntuaciones);
 
@@ -67,18 +75,13 @@ public class Activa extends JPanel implements Observer{
 		label.setText("Inserte el número a ingresar en el tablero");
 
 		panelTiempoPuntuaciones.add(label);
-
 		panelTiempoPuntuaciones.add(Box.createVerticalStrut(5));
 
 		text = new JTextField();
 
-		//JPanel panelBotones = new JPanel();
 		panelTiempoPuntuaciones.setLayout(new BoxLayout(panelTiempoPuntuaciones, BoxLayout.Y_AXIS));
-
 		panelTiempoPuntuaciones.add(Box.createVerticalStrut(10));
-
 		panelTiempoPuntuaciones.add(text);
-
 		panelTiempoPuntuaciones.add(Box.createVerticalStrut(10));
 
 		boton_puntuaciones = agregarBoton("Puntuaciones", panelTiempoPuntuaciones);
@@ -89,14 +92,7 @@ public class Activa extends JPanel implements Observer{
 
 
 		pnlAlign.add(panelTiempoPuntuaciones);
-		//pnlAlign.add(panelBotones);
 		pnlAlign.add(panelActiva);
-
-		//tamanioTablero = this.tablero.getTamanio();
-
-		//crearGrilla(tamanioTablero, tamanioTablero);
-
-		//pnlAlign.add(panelActiva);
 
 	}
 
@@ -177,9 +173,12 @@ public class Activa extends JPanel implements Observer{
 	}
 
 	@Override
-	public void update() {
-		//TODO
+	public void update(int segundos, int puntuacion) {
+		// TODO Auto-generated method stub
+		tiempo.setText(segundos + "");
+		puntuaciones.setText(puntuacion + "");
 	}
+	
 }
 
 

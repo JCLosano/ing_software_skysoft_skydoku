@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JPanel;
 
+import com.SkySoft.Skydoku.Model.DBPuntuaciones;
 import com.SkySoft.Skydoku.Model.Tablero;
 import com.SkySoft.Skydoku.view.Casilla;
 
@@ -23,10 +24,12 @@ public class ControladorSudoku implements MouseListener, KeyListener{
 	Casilla[][] casillaChica;
 	Casilla casillaAnterior;
 	ArrayList<String> string;
+	DBPuntuaciones db_puntuaciones;
 	
-	public ControladorSudoku(ControladorCentral controladorCentral, Tablero tablero) {
+	public ControladorSudoku(ControladorCentral controladorCentral, Tablero tablero, DBPuntuaciones db_puntuaciones) {
 		this.controladorCentral = controladorCentral;
 		this.tablero = tablero;
+		this.db_puntuaciones = db_puntuaciones;
 		string = new ArrayList<String>();
 		agregarNumeros();
 		agregarMouseListener();
@@ -80,7 +83,7 @@ public class ControladorSudoku implements MouseListener, KeyListener{
             } else if (e.getButton() == MouseEvent.BUTTON3 && !casilla.getForeground().equals(Color.BLACK)) {
             	tablero.getDificultad().setNumber(x, y, 0);
                 casilla.setNumber(0, false);
-                System.out.println("Descuenta 10 puntos");
+                db_puntuaciones.descontarPuntos();
             }
         }
 }

@@ -31,7 +31,6 @@ public class ControladorCentral implements ActionListener {
 
 		menuPrincipal = new MenuPrincipal(frame, this);
     	tablero = new Tablero();
-    	//puntuaciones = Puntuaciones.getInstance();
 
 		frame.add(menuPrincipal.panelMenuPrincipal);
 		frame.pack();
@@ -39,8 +38,7 @@ public class ControladorCentral implements ActionListener {
 
     	ayuda = new Ayuda(this);
     	jugar = new Jugar(this);
-    	dbPuntuaciones = new DBPuntuaciones();
-    	//puntuaciones = new Puntuaciones();
+    	dbPuntuaciones = new DBPuntuaciones(tablero);
 
     }
     
@@ -67,12 +65,10 @@ public class ControladorCentral implements ActionListener {
             	frame.add(menuPrincipal.panelMenuPrincipal);
             	break;
             case "PuntuacionesMenu":
-            	puntuaciones = Puntuaciones.getInstance();
-            	//frame.remove(menuPrincipal.panelMenuPrincipal);
-            	//frame.add(puntuaciones.getPanelPuntuaciones());
+            	puntuaciones = new Puntuaciones(dbPuntuaciones);
             	break;
 			case "Puntuaciones":
-				puntuaciones = Puntuaciones.getInstance();
+				puntuaciones = new Puntuaciones(dbPuntuaciones); 
 				break;
             case "Facil":
             	jugar.frameNombre.setVisible(true);
@@ -81,7 +77,7 @@ public class ControladorCentral implements ActionListener {
 				crearActiva();
 				activa.crearGrilla(tablero.getTamanio(), tablero.getTamanio());
 				activa.cargarTablero();
-				controladorSudoku = new ControladorSudoku(this, tablero);
+				controladorSudoku = new ControladorSudoku(this, tablero, dbPuntuaciones);
 
             	//LLAMAR LLENAR TABLERO.
 				activa.pnlAlign.setPreferredSize(new Dimension(400,300));
@@ -112,14 +108,17 @@ public class ControladorCentral implements ActionListener {
             	break;
             case "Registrar":
             	if(chequearNombre()) {
+            		dbPuntuaciones.setPuntuacion(1000);
             		dbPuntuaciones.guardarNombre(nombre);
 					frame.remove(jugar.panelJugar);
 					frame.add(activa.pnlAlign);
+					dbPuntuaciones.getTimer().start();
 					jugar.frameNombre.setVisible(false);
 				}
             	break;
             case "Menu Principal":
             	frame.remove(activa.pnlAlign);
+            	dbPuntuaciones.removeObserver(puntuaciones);
             	borrarActiva();
             	frame.add(menuPrincipal.panelMenuPrincipal);
             	break;
@@ -172,10 +171,12 @@ public class ControladorCentral implements ActionListener {
     }
 
 	public void crearActiva() {
-    	activa = new Activa(this, tablero);
+    	activa = new Activa(this, tablero, dbPuntuaciones);
 	}
 
 	private void borrarActiva() {
+		dbPuntuaciones.getTimer().stop();
+		dbPuntuaciones.removeObserver(activa);
     	activa = null;
 	}
 
