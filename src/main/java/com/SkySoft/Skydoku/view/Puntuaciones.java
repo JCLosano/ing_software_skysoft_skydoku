@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import com.SkySoft.Skydoku.Model.DBPuntuaciones;
+import com.SkySoft.Skydoku.Model.Tablero;
 
 
 public class Puntuaciones implements Observer{
@@ -21,10 +22,10 @@ public class Puntuaciones implements Observer{
 	private DBPuntuaciones db_puntuaciones;
 
 	
-	public Puntuaciones(DBPuntuaciones db_puntuaciones) {
+	public Puntuaciones() {
 		ventanaPuntuaciones = new JFrame();
 		
-		this.db_puntuaciones = db_puntuaciones;
+		this.db_puntuaciones = DBPuntuaciones.getInstance();
 		db_puntuaciones.registerObserver(this);
 		
 		

@@ -14,9 +14,7 @@ public class UnitTest
 {
     @Test
     public void test_guardarNombre() {
-
-        Tablero tablero = Tablero.getInstance();
-        DBPuntuaciones dbPuntuaciones = DBPuntuaciones.getInstance(tablero);
+        DBPuntuaciones dbPuntuaciones = DBPuntuaciones.getInstance();
         dbPuntuaciones.guardarNombre("Juan");
 
         assertEquals("Juan", dbPuntuaciones.getNombreActual());
@@ -24,8 +22,8 @@ public class UnitTest
 
     @Test
     public void test_singletoDBPuntuaciones() {
-        DBPuntuaciones db1 = DBPuntuaciones.getInstance(Tablero.getInstance());
-        DBPuntuaciones db2 = DBPuntuaciones.getInstance(Tablero.getInstance());
+        DBPuntuaciones db1 = DBPuntuaciones.getInstance();
+        DBPuntuaciones db2 = DBPuntuaciones.getInstance();
 
         assertEquals(db1,db2);
     }

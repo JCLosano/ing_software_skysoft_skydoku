@@ -29,16 +29,16 @@ public class Activa extends JPanel implements Observer{
 
 	JButton boton_menuPrincipal, boton_puntuaciones;
 
-	public Activa(ControladorCentral controladorCentral, Tablero tablero){//, DBPuntuaciones db_puntuaciones) {
+	public Activa(ControladorCentral controladorCentral){
 		TitledBorder border;
 		border = crearBorder();
 
 		this.controladorCentral = controladorCentral;
 
-		this.db_puntuaciones = DBPuntuaciones.getInstance(tablero);
+		this.db_puntuaciones = DBPuntuaciones.getInstance();
 		db_puntuaciones.registerObserver(this);
 		
-		this.tablero = tablero;
+		this.tablero = Tablero.getInstance();
 
 		estado_grilla = false;
 
@@ -205,6 +205,8 @@ public class Activa extends JPanel implements Observer{
 	public JFrame getFramePerdio() {
 		return framePerdio;
 	}
+	
+	
 
 
 	

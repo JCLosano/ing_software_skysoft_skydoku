@@ -2,7 +2,6 @@ package com.SkySoft.Skydoku.Model;
 
 
 import com.SkySoft.Skydoku.view.Observer;
-import com.SkySoft.Skydoku.view.Puntuaciones;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,24 +13,21 @@ import javax.swing.Timer;
 
 public class DBPuntuaciones implements Subject{
 
-    String nombreActual;
-    Vector<Vector<String>> puntuaciones;
-    Vector<String> campos;
-    int posicionUltimoNombreIngresado;
+    private String nombreActual;
+    private Vector<Vector<String>> puntuaciones;
+    private Vector<String> campos;
     private List<Observer> observers;
 	private Timer timer;
 	private int segundos;
 	private int puntuacion;
-	String dificultad;
-	ActionListener tarea;
-	Tablero tablero;
+	private ActionListener tarea;
+	private Tablero tablero;
 
 	private static DBPuntuaciones dbPuntuaciones;
 
-    private DBPuntuaciones(Tablero tablero) {
+    private DBPuntuaciones() {
         //nombres = new ArrayList<>();
-    	this.tablero = tablero;
-        posicionUltimoNombreIngresado = 0;
+    	this.tablero = Tablero.getInstance();
         puntuaciones = new Vector<Vector<String>>();
         observers = new ArrayList<Observer>();
         
@@ -48,9 +44,9 @@ public class DBPuntuaciones implements Subject{
 		
     }
 
-    public static DBPuntuaciones getInstance(Tablero tablero) {
+    public static DBPuntuaciones getInstance() {
     	if (dbPuntuaciones == null) {
-    		return dbPuntuaciones = new DBPuntuaciones(tablero);
+    		return dbPuntuaciones = new DBPuntuaciones();
 		}
     	else {
     		return dbPuntuaciones;
@@ -70,9 +66,9 @@ public class DBPuntuaciones implements Subject{
         campos.add("02:00");
         campos.add("100000");
         campos.add("Facil");
-        /*puntuaciones.add(campos);
+        puntuaciones.add(campos);
 
-        for (int i = 0; i < puntuaciones.size(); i++) {
+        /*for (int i = 0; i < puntuaciones.size(); i++) {
             System.out.println(puntuaciones.get(i).toString());
             System.out.println(puntuaciones.get(i).get(0));
         }

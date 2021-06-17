@@ -17,20 +17,18 @@ import com.SkySoft.Skydoku.view.Casilla;
 
 public class ControladorSudoku implements MouseListener, KeyListener{
 
-	ControladorCentral controladorCentral;
-	Tablero tablero;
-	int teclaPresionada;
-	JPanel[][] casillaGrande;
-	Casilla[][] casillaChica;
-	Casilla casillaAnterior;
-	ArrayList<String> string;
-	DBPuntuaciones db_puntuaciones;
-	int flagCeros;
+	private ControladorCentral controladorCentral;
+	private Tablero tablero;
+	private JPanel[][] casillaGrande;
+	private Casilla casillaAnterior;
+	private ArrayList<String> string;
+	private DBPuntuaciones db_puntuaciones;
+	private int flagCeros;
 	
-	public ControladorSudoku(ControladorCentral controladorCentral, Tablero tablero, DBPuntuaciones db_puntuaciones) {
+	public ControladorSudoku(ControladorCentral controladorCentral) {
 		this.controladorCentral = controladorCentral;
-		this.tablero = tablero;
-		this.db_puntuaciones = db_puntuaciones;
+		this.tablero = Tablero.getInstance();
+		this.db_puntuaciones = DBPuntuaciones.getInstance();
 		string = new ArrayList<String>();
 		agregarNumeros();
 		agregarMouseListener();
