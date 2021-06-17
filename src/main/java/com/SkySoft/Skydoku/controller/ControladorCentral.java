@@ -174,7 +174,7 @@ public class ControladorCentral implements ActionListener {
     }
 
 	public void crearActiva() {
-    	activa = new Activa(this, tablero, dbPuntuaciones);
+    	activa = new Activa(this, tablero);
 	}
 
 	private void borrarActiva() {

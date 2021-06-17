@@ -29,13 +29,13 @@ public class Activa extends JPanel implements Observer{
 
 	JButton boton_menuPrincipal, boton_puntuaciones;
 
-	public Activa(ControladorCentral controladorCentral, Tablero tablero, DBPuntuaciones db_puntuaciones) {
+	public Activa(ControladorCentral controladorCentral, Tablero tablero){//, DBPuntuaciones db_puntuaciones) {
 		TitledBorder border;
 		border = crearBorder();
 
 		this.controladorCentral = controladorCentral;
 
-		this.db_puntuaciones = db_puntuaciones;
+		this.db_puntuaciones = DBPuntuaciones.getInstance(tablero);
 		db_puntuaciones.registerObserver(this);
 		
 		this.tablero = tablero;
