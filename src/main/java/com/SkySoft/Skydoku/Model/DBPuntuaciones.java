@@ -119,9 +119,7 @@ public class DBPuntuaciones implements Subject{
 	}
 
     @Override
-    public void registerObserver(Observer o) {
-    	observers.add(o);
-    }
+    public void registerObserver(Observer o) { observers.add(o); }
 
     @Override
     public void removeObserver(Observer o) {
