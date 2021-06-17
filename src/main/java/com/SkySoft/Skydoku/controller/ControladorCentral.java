@@ -6,17 +6,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
+import com.SkySoft.Skydoku.Model.DBPuntuaciones;
 import com.SkySoft.Skydoku.Model.Tablero;
-import com.SkySoft.Skydoku.view.Activa;
-import com.SkySoft.Skydoku.view.Ayuda;
-import com.SkySoft.Skydoku.view.Jugar;
-import com.SkySoft.Skydoku.view.MenuPrincipal;
-import com.SkySoft.Skydoku.view.Puntuaciones;
+import com.SkySoft.Skydoku.view.*;
 
 public class ControladorCentral implements ActionListener {
 	JFrame frame;
@@ -26,8 +19,11 @@ public class ControladorCentral implements ActionListener {
 	Jugar jugar;
 	Activa activa;
 	Puntuaciones puntuaciones;
-	int[][] numerosTablero;
+	DBPuntuaciones dbPuntuaciones;
 	ControladorSudoku controladorSudoku;
+	String nombre;
+
+	int[][] numerosTablero;
 
     public ControladorCentral() {
     	frame = new JFrame("SKYDOKU");
@@ -35,7 +31,6 @@ public class ControladorCentral implements ActionListener {
 
 		menuPrincipal = new MenuPrincipal(frame, this);
     	tablero = new Tablero();
-    	//puntuaciones = Puntuaciones.getInstance();
 
 		frame.add(menuPrincipal.panelMenuPrincipal);
 		frame.pack();
@@ -43,7 +38,7 @@ public class ControladorCentral implements ActionListener {
 
     	ayuda = new Ayuda(this);
     	jugar = new Jugar(this);
-    	//puntuaciones = new Puntuaciones();
+    	dbPuntuaciones = DBPuntuaciones.getInstance(tablero);
 
     }
     
@@ -70,12 +65,10 @@ public class ControladorCentral implements ActionListener {
             	frame.add(menuPrincipal.panelMenuPrincipal);
             	break;
             case "PuntuacionesMenu":
-            	puntuaciones = Puntuaciones.getInstance();
-            	//frame.remove(menuPrincipal.panelMenuPrincipal);
-            	//frame.add(puntuaciones.getPanelPuntuaciones());
+            	puntuaciones = new Puntuaciones(dbPuntuaciones);
             	break;
 			case "Puntuaciones":
-				puntuaciones = Puntuaciones.getInstance();
+				puntuaciones = new Puntuaciones(dbPuntuaciones); 
 				break;
             case "Facil":
             	jugar.frameNombre.setVisible(true);
@@ -84,10 +77,8 @@ public class ControladorCentral implements ActionListener {
 				crearActiva();
 				activa.crearGrilla(tablero.getTamanio(), tablero.getTamanio());
 				activa.cargarTablero();
-				controladorSudoku = new ControladorSudoku(this, tablero);
-
-            	//LLAMAR LLENAR TABLERO.
-				activa.pnlAlign.setPreferredSize(new Dimension(400,300));
+				
+				activa.pnlAlign.setPreferredSize(new Dimension(600, 300));
             	break;
             case "Normal":
             	jugar.frameNombre.setVisible(true);
@@ -97,34 +88,43 @@ public class ControladorCentral implements ActionListener {
 				activa.crearGrilla(tablero.getTamanio(), tablero.getTamanio());
 				activa.cargarTablero();
 
-
-            	//LLAMAR LLENAR TABLERO.
-            	activa.pnlAlign.setPreferredSize(new Dimension(800,600));
+            	activa.pnlAlign.setPreferredSize(new Dimension(900,600));
             	break;
             case "Dificil":
             	jugar.frameNombre.setVisible(true);
             	tablero.crearTablero(e.getActionCommand());
-
+            	
 				crearActiva();
 				activa.crearGrilla(tablero.getTamanio(), tablero.getTamanio());
 				activa.cargarTablero();
 
-
-            	//LLAMAR LLENAR TABLERO.
-            	activa.pnlAlign.setPreferredSize(new Dimension(1366,900));
+            	activa.pnlAlign.setPreferredSize(new Dimension(1500,900));
             	break;
             case "Registrar":
             	if(chequearNombre()) {
+            		controladorSudoku = new ControladorSudoku(this, tablero, dbPuntuaciones);
+            		dbPuntuaciones.setPuntuacion(1000);
+            		dbPuntuaciones.guardarNombre(nombre);
 					frame.remove(jugar.panelJugar);
 					frame.add(activa.pnlAlign);
+					dbPuntuaciones.getTimer().start();
 					jugar.frameNombre.setVisible(false);
 				}
             	break;
             case "Menu Principal":
             	frame.remove(activa.pnlAlign);
+            	dbPuntuaciones.removeObserver(puntuaciones);
             	borrarActiva();
             	frame.add(menuPrincipal.panelMenuPrincipal);
             	break;
+
+			case "Salir":
+				getActiva().getFramePerdio().setVisible(false);
+				frame.remove(activa.pnlAlign);
+				dbPuntuaciones.removeObserver(puntuaciones);
+				borrarActiva();
+				frame.add(menuPrincipal.panelMenuPrincipal);
+				break;
             default:
             	break;
         }
@@ -134,7 +134,6 @@ public class ControladorCentral implements ActionListener {
     }
     
     private boolean chequearNombre() {
-    	String nombre;
     	JFrame frame = new JFrame();
     	JPanel panel = new JPanel();
     	JTextArea texto = new JTextArea();
@@ -175,10 +174,12 @@ public class ControladorCentral implements ActionListener {
     }
 
 	public void crearActiva() {
-    	activa = new Activa(this, tablero);
+    	activa = new Activa(this, tablero, dbPuntuaciones);
 	}
 
 	private void borrarActiva() {
+		dbPuntuaciones.getTimer().stop();
+		dbPuntuaciones.removeObserver(activa);
     	activa = null;
 	}
 
@@ -201,4 +202,7 @@ public class ControladorCentral implements ActionListener {
 	public Jugar getJugar(){
     	return jugar;
 	}
+
+	public Puntuaciones getPuntuaciones() { return puntuaciones;}
+
 }

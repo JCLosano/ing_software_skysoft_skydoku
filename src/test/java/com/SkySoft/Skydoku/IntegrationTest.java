@@ -24,17 +24,15 @@ public class IntegrationTest {
 	}
 
 	@Test
-	public void menuPrincipal_vActiva() {
-	    ControladorCentral controladorCentral = new ControladorCentral();
+	public void puntuaciones_vMenuPrincipal() {
+		ControladorCentral controladorCentral = new ControladorCentral();
 
-	    controladorCentral.crearActiva();
+		controladorCentral.getMenuPrincipal().getBotonPuntuaciones().doClick();
 
-	    controladorCentral.getActiva().getBotonMenuPrincipal().doClick();
+		assertTrue(controladorCentral.getPuntuaciones().getMitabla2().isShowing());
+	}
 
-	    assertTrue(controladorCentral.getMenuPrincipal().panelMenuPrincipal.isShowing());
-    }
-
-    @Test
+	@Test
 	public void seleccionarFacil_vJugar() {
 		ControladorCentral controladorCentral = new ControladorCentral();
 
@@ -72,4 +70,46 @@ public class IntegrationTest {
 
 		assertEquals(16,controladorCentral.getActiva().getTamanioTablero());
 	}
+
+	@Test
+	public void puntuaciones_vActiva() {
+		ControladorCentral controladorCentral = new ControladorCentral();
+
+		controladorCentral.getJugar().getBotonFacil().doClick();
+
+		controladorCentral.getJugar().getTextField().setText("pedro");
+
+		controladorCentral.getJugar().getBotonRegistrar().doClick();
+
+		controladorCentral.getActiva().getBotonPuntuaciones().doClick();
+
+		assertTrue(controladorCentral.getPuntuaciones().getMitabla2().isShowing());
+	}
+
+	@Test
+	public void menuPrincipal_vActiva() {
+	    ControladorCentral controladorCentral = new ControladorCentral();
+
+	    controladorCentral.crearActiva();
+
+	    controladorCentral.getActiva().getBotonMenuPrincipal().doClick();
+
+	    assertTrue(controladorCentral.getMenuPrincipal().panelMenuPrincipal.isShowing());
+    }
+
+    @Test
+    public void puntajeCero_vActiva() {
+		ControladorCentral controladorCentral = new ControladorCentral();
+
+		controladorCentral.getJugar().getBotonDificil().doClick();
+
+		controladorCentral.getJugar().getTextField().setText("oscar");
+
+		controladorCentral.getJugar().getBotonRegistrar().doClick();
+
+		controladorCentral.getActiva().getDBPuntuaciones().setPuntuacion(0);
+
+		assertTrue(controladorCentral.getActiva().getFramePerdio().isShowing());
+	}
+
 }
