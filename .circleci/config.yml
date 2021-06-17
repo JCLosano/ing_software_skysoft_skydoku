@@ -13,4 +13,4 @@ workflows:
     jobs:
       - maven/test:
           executor: example
-          command: xvfb :1 1920x1080x16
+          command: xvfb:1 1920x1080x16
