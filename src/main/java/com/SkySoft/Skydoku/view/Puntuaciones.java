@@ -93,7 +93,7 @@ public class Puntuaciones implements Observer{
 	public void update(int tiempo, int puntuacion) {
 		// TODO Auto-generated method stub
 		if(tiempo != 0) {
-			int puntuacionTotal = ((puntuacion/tiempo)*100);
+			int puntuacionTotal = (int) (((float)puntuacion/(float)tiempo)*100);
 			String aux2[] = {" ", db_puntuaciones.getNombreActual(), puntuacion + "", tiempo + "", puntuacionTotal + "", db_puntuaciones.getDificultad()};
 			model1.removeRow(0);
 			model1.insertRow(0, aux2);
