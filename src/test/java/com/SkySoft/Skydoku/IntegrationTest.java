@@ -1,115 +1,43 @@
 package com.SkySoft.Skydoku;
 
-import com.SkySoft.Skydoku.Model.Tablero;
+import com.SkySoft.Skydoku.Model.*;
 import org.junit.Test;
-
-import com.SkySoft.Skydoku.controller.ControladorCentral;
-import com.SkySoft.Skydoku.view.Jugar;
-import com.SkySoft.Skydoku.view.MenuPrincipal;
 
 import static org.junit.Assert.*;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-
 public class IntegrationTest {
-	
-	@Test
-	public void Jugar_vMenuPrincipal() {
-        ControladorCentral controladorCentral = new ControladorCentral();
 
-        controladorCentral.getMenuPrincipal().getBotonJugar().doClick();
-        
-        assertTrue(controladorCentral.getJugar().panelJugar.isShowing());
+	@Test
+	public void test_getTamanioTableroFacil() {
+		Tablero t = Tablero.getInstance();
+		Dificultad facil = new Facil();
+
+		t.crearTablero(facil.getClass().getSimpleName());
+		int tamanio_tablero = facil.tamanioTablero();
+
+		assertEquals(tamanio_tablero, t.getTamanio());
 	}
 
 	@Test
-	public void puntuaciones_vMenuPrincipal() {
-		ControladorCentral controladorCentral = new ControladorCentral();
+	public void test_getTamanioTableroNormal() {
+		Tablero t = Tablero.getInstance();
+		Dificultad normal = new Normal();
 
-		controladorCentral.getMenuPrincipal().getBotonPuntuaciones().doClick();
+		t.crearTablero(normal.getClass().getSimpleName());
+		int tamanio_tablero = normal.tamanioTablero();
 
-		assertTrue(controladorCentral.getPuntuaciones().getMitabla2().isShowing());
+		assertEquals(tamanio_tablero, t.getTamanio());
 	}
 
 	@Test
-	public void seleccionarFacil_vJugar() {
-		ControladorCentral controladorCentral = new ControladorCentral();
+	public void test_getTamanioTableroDificil() {
+		Tablero t = Tablero.getInstance();
+		Dificultad dificil = new Dificil();
 
-		controladorCentral.getJugar().getBotonFacil().doClick();
+		t.crearTablero(dificil.getClass().getSimpleName());
+		int tamanio_tablero = dificil.tamanioTablero();
 
-		controladorCentral.getJugar().getTextField().setText("oscar");
-
-		controladorCentral.getJugar().getBotonRegistrar().doClick();
-
-		assertEquals(4,controladorCentral.getActiva().getTamanioTablero());
-	}
-
-	@Test
-	public void seleccionarNormal_vJugar() {
-		ControladorCentral controladorCentral = new ControladorCentral();
-
-		controladorCentral.getJugar().getBotonNormal().doClick();
-
-		controladorCentral.getJugar().getTextField().setText("oscar");
-
-		controladorCentral.getJugar().getBotonRegistrar().doClick();
-
-		assertEquals(9,controladorCentral.getActiva().getTamanioTablero());
-	}
-
-	@Test
-	public void seleccionarDificil_vJugar() {
-		ControladorCentral controladorCentral = new ControladorCentral();
-
-		controladorCentral.getJugar().getBotonDificil().doClick();
-
-		controladorCentral.getJugar().getTextField().setText("oscar");
-
-		controladorCentral.getJugar().getBotonRegistrar().doClick();
-
-		assertEquals(16,controladorCentral.getActiva().getTamanioTablero());
-	}
-
-	@Test
-	public void puntuaciones_vActiva() {
-		ControladorCentral controladorCentral = new ControladorCentral();
-
-		controladorCentral.getJugar().getBotonFacil().doClick();
-
-		controladorCentral.getJugar().getTextField().setText("pedro");
-
-		controladorCentral.getJugar().getBotonRegistrar().doClick();
-
-		controladorCentral.getActiva().getBotonPuntuaciones().doClick();
-
-		assertTrue(controladorCentral.getPuntuaciones().getMitabla2().isShowing());
-	}
-
-	@Test
-	public void menuPrincipal_vActiva() {
-	    ControladorCentral controladorCentral = new ControladorCentral();
-
-	    controladorCentral.crearActiva();
-
-	    controladorCentral.getActiva().getBotonMenuPrincipal().doClick();
-
-	    assertTrue(controladorCentral.getMenuPrincipal().panelMenuPrincipal.isShowing());
-    }
-
-    @Test
-    public void puntajeCero_vActiva() {
-		ControladorCentral controladorCentral = new ControladorCentral();
-
-		controladorCentral.getJugar().getBotonDificil().doClick();
-
-		controladorCentral.getJugar().getTextField().setText("oscar");
-
-		controladorCentral.getJugar().getBotonRegistrar().doClick();
-
-		controladorCentral.getActiva().getDBPuntuaciones().setPuntuacion(0);
-
-		assertTrue(controladorCentral.getActiva().getFramePerdio().isShowing());
+		assertEquals(tamanio_tablero, t.getTamanio());
 	}
 
 }
