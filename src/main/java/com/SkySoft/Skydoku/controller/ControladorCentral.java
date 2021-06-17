@@ -30,7 +30,7 @@ public class ControladorCentral implements ActionListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		menuPrincipal = new MenuPrincipal(frame, this);
-    	tablero = new Tablero();
+    	tablero = Tablero.getInstance();
 
 		frame.add(menuPrincipal.panelMenuPrincipal);
 		frame.pack();

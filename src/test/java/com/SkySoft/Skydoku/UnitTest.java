@@ -128,7 +128,7 @@ public class UnitTest
     @Test
     public void test_guardarNombre() {
 
-        Tablero tablero = new Tablero();
+        Tablero tablero = Tablero.getInstance();
         DBPuntuaciones dbPuntuaciones = DBPuntuaciones.getInstance(tablero);
         dbPuntuaciones.guardarNombre("Juan");
 

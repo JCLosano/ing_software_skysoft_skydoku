@@ -1,15 +1,25 @@
 package com.SkySoft.Skydoku.Model;
 
 public class Tablero {
+
+    private static Tablero tablero;
     Dificultad dificultad;
     private int tamanio;
     
     private int numerosTablero[][];
     
-    public Tablero () {
-
-
+    private Tablero () {
     }
+
+    public static Tablero getInstance() {
+        if (tablero == null) {
+            return tablero = new Tablero();
+        }
+        else {
+            return tablero;
+        }
+    }
+
 
     public void crearTablero(String dificultad) {
         switch (dificultad) {
