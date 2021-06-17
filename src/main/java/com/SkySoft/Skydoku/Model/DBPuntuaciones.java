@@ -94,6 +94,7 @@ public class DBPuntuaciones implements Subject{
 	public String getDificultad() {
 		return tablero.getDificultad().getClass().getSimpleName();
 	}
+
 	
 	public void descontarPuntos() {
 		puntuacion -= 10;
@@ -101,6 +102,7 @@ public class DBPuntuaciones implements Subject{
 	
 	public void setPuntuacion(int puntos) {
 		puntuacion = puntos;
+		notifyObservers();
 	}
 
     @Override

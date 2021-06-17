@@ -1,18 +1,8 @@
 package com.SkySoft.Skydoku.view;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.GridLayout;
+import java.awt.*;
 
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.Timer;
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
 import com.SkySoft.Skydoku.Model.DBPuntuaciones;
@@ -23,10 +13,11 @@ import com.SkySoft.Skydoku.controller.ControladorCentral;
 public class Activa extends JPanel implements Observer{
 
 	private JTextField text;
+	private JFrame framePerdio;
 	JTextArea tiempo;
 	JTextArea puntuaciones;
-//	private int segundos;
 	private DBPuntuaciones db_puntuaciones;
+	private ControladorCentral controladorCentral;
 	public JPanel panelActiva = new JPanel();
 	public JPanel pnlAlign = new JPanel();
 	private JPanel[][] casillaGrande;
@@ -41,8 +32,8 @@ public class Activa extends JPanel implements Observer{
 	public Activa(ControladorCentral controladorCentral, Tablero tablero, DBPuntuaciones db_puntuaciones) {
 		TitledBorder border;
 		border = crearBorder();
-		
-//		segundos = 0;
+
+		this.controladorCentral = controladorCentral;
 
 		this.db_puntuaciones = db_puntuaciones;
 		db_puntuaciones.registerObserver(this);
@@ -109,7 +100,6 @@ public class Activa extends JPanel implements Observer{
 			for (int x = 0; x < filas; x++) {
 				casillaGrande[y][x] = new JPanel(grilla);
 				casillaGrande[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
-				//casillaGrande[y][x].setPreferredSize(new Dimension(filas*63, columnas*63));
 				panelActiva.add(casillaGrande[y][x]);
 			}
 		}
@@ -172,12 +162,51 @@ public class Activa extends JPanel implements Observer{
 		return text;
 	}
 
+	public JButton getBotonPuntuaciones() {
+		return boton_puntuaciones;
+	}
+
+	public DBPuntuaciones getDBPuntuaciones() {
+		return db_puntuaciones;
+	}
+
 	@Override
 	public void update(int segundos, int puntuacion) {
-		// TODO Auto-generated method stub
 		tiempo.setText(segundos + "");
 		puntuaciones.setText(puntuacion + "");
+		if (puntuacion == 0) {
+			db_puntuaciones.getTimer().stop();
+			textoPerdio();
+		}
 	}
+
+	private void textoPerdio() {
+		framePerdio = new JFrame();
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		JTextArea texto = new JTextArea();
+		texto.setWrapStyleWord(false);
+		texto.setRows(2);
+		texto.setText("Perdio, se quedo sin puntos");
+		texto.setEditable(false);
+
+		JButton botonMenuPrincipalPerdio = agregarBoton("Salir", panel);
+		botonMenuPrincipalPerdio.addActionListener(controladorCentral);
+
+		framePerdio.setBounds(100, 100, 400, 200);
+		framePerdio.getContentPane().add(panel, BorderLayout.CENTER);
+
+		panel.add(texto);
+		panel.add(botonMenuPrincipalPerdio);
+
+		framePerdio.setVisible(true);
+	}
+
+	public JFrame getFramePerdio() {
+		return framePerdio;
+	}
+
+
 	
 }
 

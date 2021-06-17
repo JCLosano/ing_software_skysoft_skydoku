@@ -117,6 +117,14 @@ public class ControladorCentral implements ActionListener {
             	borrarActiva();
             	frame.add(menuPrincipal.panelMenuPrincipal);
             	break;
+
+			case "Salir":
+				getActiva().getFramePerdio().setVisible(false);
+				frame.remove(activa.pnlAlign);
+				dbPuntuaciones.removeObserver(puntuaciones);
+				borrarActiva();
+				frame.add(menuPrincipal.panelMenuPrincipal);
+				break;
             default:
             	break;
         }
@@ -194,5 +202,7 @@ public class ControladorCentral implements ActionListener {
 	public Jugar getJugar(){
     	return jugar;
 	}
+
+	public Puntuaciones getPuntuaciones() { return puntuaciones;}
 
 }

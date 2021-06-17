@@ -9,8 +9,7 @@ import com.SkySoft.Skydoku.Model.DBPuntuaciones;
 
 
 public class Puntuaciones implements Observer{
-	
-	private JPanel panelPuntuaciones;
+
 	private JScrollPane mibarra1, mibarra2;
 	private JTable mitabla1, mitabla2;
 	private static JFrame ventanaPuntuaciones;
@@ -96,9 +95,10 @@ public class Puntuaciones implements Observer{
 		//mitabla2.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		mibarra2.setViewportView(mitabla2);
 	}
-	
-	public JPanel getPanelPuntuaciones() {
-		return panelPuntuaciones;
+
+
+	public JTable getMitabla2() {
+		return mitabla2;
 	}
 
 	@Override
