@@ -17,7 +17,6 @@ public class MenuPrincipal {
         panelMenuPrincipal.setBorder(border);
         panelMenuPrincipal.setLayout(new BoxLayout(panelMenuPrincipal, BoxLayout.Y_AXIS));
         panelMenuPrincipal.setPreferredSize(new Dimension(640, 480));
-        //frame.add(panelMenuPrincipal);
 
         panelMenuPrincipal.add(Box.createVerticalStrut(150));
         
@@ -30,9 +29,7 @@ public class MenuPrincipal {
         boton_puntuaciones = botonPuntuaciones();
         boton_puntuaciones.addActionListener(controladorCentral);
         boton_puntuaciones.setActionCommand("PuntuacionesMenu");
-        
-        //frame.pack();
-        //frame.setVisible(true);
+
     }
     
 

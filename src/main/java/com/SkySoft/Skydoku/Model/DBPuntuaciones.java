@@ -80,10 +80,6 @@ public class DBPuntuaciones implements Subject{
 		return timer;
 	}
 	
-	/*public Vector<String> getCampos(){
-		return campos;
-	}*/
-	
 	public String getNombreActual() {
 		return nombreActual;
 	}
