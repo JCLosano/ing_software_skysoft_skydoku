@@ -90,7 +90,6 @@
                     <id>wrap-tests</id>
                     <goals>
                         <goal>run</goal>
-                        <goal>stop</goal>
                     </goals>
                 </execution>
             </executions>
