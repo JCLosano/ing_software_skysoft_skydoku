@@ -5,7 +5,8 @@ executors:
     docker:
       - image: circleci/openjdk:8-jdk
     environment:
-      MAVEN_OPTS: "-Djava.awt.headless=true"
+      command: "xvfb :1 -screen 0 1920x1080x16"
+#      MAVEN_OPTS: "-Djava.awt.headless=true"
 
 orbs:
   maven: circleci/maven@1.1
