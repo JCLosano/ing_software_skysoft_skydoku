@@ -1,9 +1,16 @@
 version: 2.1
 
+executors:
+  example:
+    docker:
+      - image: circleci/openjdk:8-jdk
+        #se debe ejecutar el comando xvfb en el contenedor de docker.
+
 orbs:
-  maven: circleci/maven@0.0.12
+  maven: circleci/maven@1.1
 
 workflows:
   maven_test:
     jobs:
-      - maven/test
+      - maven/test:
+          executor: example

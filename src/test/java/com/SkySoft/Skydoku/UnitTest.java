@@ -2,6 +2,9 @@ package com.SkySoft.Skydoku;
 
 import static org.junit.Assert.*;
 
+import com.SkySoft.Skydoku.Model.DBPuntuaciones;
+import com.SkySoft.Skydoku.Model.Dificultad;
+import com.SkySoft.Skydoku.Model.Facil;
 import com.SkySoft.Skydoku.Model.Tablero;
 import com.SkySoft.Skydoku.controller.ControladorCentral;
 import com.SkySoft.Skydoku.view.Ayuda;
@@ -120,5 +123,15 @@ public class UnitTest
                     , controladorCentral.getActiva().getBotonMenuPrincipal().getClass().getSimpleName());
         assertEquals("Menu Principal"
                     , controladorCentral.getActiva().getBotonMenuPrincipal().getText());
+    }
+
+    @Test
+    public void test_guardarNombre() {
+
+        Tablero tablero = new Tablero();
+        DBPuntuaciones dbPuntuaciones = DBPuntuaciones.getInstance(tablero);
+        dbPuntuaciones.guardarNombre("Juan");
+
+        assertEquals("Juan", dbPuntuaciones.getNombreActual());
     }
 }
