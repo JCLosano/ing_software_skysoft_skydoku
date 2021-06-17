@@ -84,7 +84,7 @@
         <plugin>
             <groupId>com.github.zetten</groupId>
             <artifactId>xvfb-maven-plugin</artifactId>
-            <version>${xvfb-maven-plugin.version}</version>
+            <version>1.4.0</version>
             <executions>
                 <execution>
                     <id>wrap-tests</id>
