@@ -8,7 +8,7 @@ en dificultad dificil dividida en regiones de 2x2, 3x3 o 4x4 casillas
 respectivamente.
 Partiendo de algunos números ya dispuestos en algunas de las casillas,
 hay que completar las casillas vacías con dígitos del 1 al 4, del 1 al 9
-y del 1 al 16 según la dificultad elegidasin que se repitan por fila, columna
+y del 1 al 16 según la dificultad elegida sin que se repitan por fila, columna
 o región.
 
 - ##### Reglas:
