@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import com.SkySoft.Skydoku.Model.DBPuntuaciones;
+import com.SkySoft.Skydoku.Model.Tablero;
 
 
 public class Puntuaciones implements Observer{
@@ -13,18 +14,15 @@ public class Puntuaciones implements Observer{
 	private JScrollPane mibarra1, mibarra2;
 	private JTable mitabla1, mitabla2;
 	private static JFrame ventanaPuntuaciones;
-
-	//private static Puntuaciones puntuaciones;
 	DefaultTableModel model1;
 	DefaultTableModel model2;
 	private String aux[] = {" ", " ", " ", " ", " ", " "};
 	private DBPuntuaciones db_puntuaciones;
 
-	
-	public Puntuaciones(DBPuntuaciones db_puntuaciones) {
+	public Puntuaciones() {
 		ventanaPuntuaciones = new JFrame();
 		
-		this.db_puntuaciones = db_puntuaciones;
+		this.db_puntuaciones = DBPuntuaciones.getInstance();
 		db_puntuaciones.registerObserver(this);
 		
 		
@@ -94,11 +92,12 @@ public class Puntuaciones implements Observer{
 	@Override
 	public void update(int tiempo, int puntuacion) {
 		// TODO Auto-generated method stub
-		int puntuacionTotal = ((puntuacion/tiempo)*100);
-		String aux2[] = {" ", db_puntuaciones.getNombreActual(), puntuacion + "", tiempo + "", puntuacionTotal + "", db_puntuaciones.getDificultad()};
-		model1.removeRow(0);
-		model1.insertRow(0, aux2);
-		/*tiempo.setText(segundos + "");
-		puntuaciones.setText(puntuacion + "");*/
+		if(tiempo != 0) {
+			int puntuacionTotal = ((puntuacion/tiempo)*100);
+			String aux2[] = {" ", db_puntuaciones.getNombreActual(), puntuacion + "", tiempo + "", puntuacionTotal + "", db_puntuaciones.getDificultad()};
+			model1.removeRow(0);
+			model1.insertRow(0, aux2);
+		}
+
 	}
 }
