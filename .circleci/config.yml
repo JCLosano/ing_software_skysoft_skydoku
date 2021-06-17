@@ -14,3 +14,4 @@ workflows:
     jobs:
       - maven/test:
           executor: example
+          command: mvn -Dtest=UnitTest test
