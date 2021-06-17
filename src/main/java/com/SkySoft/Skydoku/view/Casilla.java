@@ -3,17 +3,11 @@ package com.SkySoft.Skydoku.view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 import javax.swing.*;
 
 public class Casilla extends JLabel {
     private int fila;
     private int columna;
-    private JTextField numero;
     int numeroIngresado;
     
     public Casilla(int fila, int columna) {

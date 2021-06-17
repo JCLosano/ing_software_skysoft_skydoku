@@ -5,25 +5,21 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import java.awt.event.MouseEvent;
-
 import com.SkySoft.Skydoku.Model.DBPuntuaciones;
 import com.SkySoft.Skydoku.Model.Tablero;
 import com.SkySoft.Skydoku.view.*;
 
 public class ControladorCentral implements ActionListener {
-	JFrame frame;
-	MenuPrincipal menuPrincipal;
-	Tablero tablero;
-	Ayuda ayuda;
-	Jugar jugar;
-	Activa activa;
-	Puntuaciones puntuaciones;
-	DBPuntuaciones dbPuntuaciones;
-	ControladorSudoku controladorSudoku;
-	String nombre;
-
-	int[][] numerosTablero;
+	private JFrame frame;
+	private MenuPrincipal menuPrincipal;
+	private Tablero tablero;
+	private Ayuda ayuda;
+	private Jugar jugar;
+	private Activa activa;
+	private Puntuaciones puntuaciones;
+	private DBPuntuaciones dbPuntuaciones;
+	private ControladorSudoku controladorSudoku;
+	private String nombre;
 
     public ControladorCentral() {
     	frame = new JFrame("SKYDOKU");
@@ -38,12 +34,8 @@ public class ControladorCentral implements ActionListener {
 
     	ayuda = new Ayuda(this);
     	jugar = new Jugar(this);
-    	dbPuntuaciones = DBPuntuaciones.getInstance(tablero);
+    	dbPuntuaciones = DBPuntuaciones.getInstance();
 
-    }
-    
-    public void mouseClicked(MouseEvent e) {
-    	System.out.println(e.toString());
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -65,10 +57,10 @@ public class ControladorCentral implements ActionListener {
             	frame.add(menuPrincipal.panelMenuPrincipal);
             	break;
             case "PuntuacionesMenu":
-            	puntuaciones = new Puntuaciones(dbPuntuaciones);
+            	puntuaciones = new Puntuaciones();
             	break;
 			case "Puntuaciones":
-				puntuaciones = new Puntuaciones(dbPuntuaciones); 
+				puntuaciones = new Puntuaciones(); 
 				break;
             case "Facil":
             	jugar.frameNombre.setVisible(true);
@@ -102,7 +94,7 @@ public class ControladorCentral implements ActionListener {
             	break;
             case "Registrar":
             	if(chequearNombre()) {
-            		controladorSudoku = new ControladorSudoku(this, tablero, dbPuntuaciones);
+            		controladorSudoku = new ControladorSudoku(this);
             		dbPuntuaciones.setPuntuacion(1000);
             		dbPuntuaciones.guardarNombre(nombre);
 					frame.remove(jugar.panelJugar);
@@ -174,7 +166,7 @@ public class ControladorCentral implements ActionListener {
     }
 
 	public void crearActiva() {
-    	activa = new Activa(this, tablero, dbPuntuaciones);
+    	activa = new Activa(this);
 	}
 
 	private void borrarActiva() {

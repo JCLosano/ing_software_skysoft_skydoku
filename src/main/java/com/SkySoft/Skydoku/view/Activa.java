@@ -24,23 +24,20 @@ public class Activa extends JPanel implements Observer{
 	private Casilla[][] casillaChica;
 	private int tamanioTablero;
 	private Tablero tablero;
-	private boolean estado_grilla;
 	private int[][] numerosTablero;
 
 	JButton boton_menuPrincipal, boton_puntuaciones;
 
-	public Activa(ControladorCentral controladorCentral, Tablero tablero, DBPuntuaciones db_puntuaciones) {
+	public Activa(ControladorCentral controladorCentral){
 		TitledBorder border;
 		border = crearBorder();
 
 		this.controladorCentral = controladorCentral;
 
-		this.db_puntuaciones = db_puntuaciones;
+		this.db_puntuaciones = DBPuntuaciones.getInstance();
 		db_puntuaciones.registerObserver(this);
 		
-		this.tablero = tablero;
-
-		estado_grilla = false;
+		this.tablero = Tablero.getInstance();
 
 		pnlAlign.setLayout(new BoxLayout(pnlAlign, BoxLayout.X_AXIS));
 
@@ -111,7 +108,6 @@ public class Activa extends JPanel implements Observer{
 				casillaGrande[y / columnas][x / filas].add(casillaChica[y][x]);
 			}
 		}
-		estado_grilla = true;
 		tamanioTablero = filas * columnas;
 	}
 
@@ -146,16 +142,8 @@ public class Activa extends JPanel implements Observer{
 		return tamanioTablero;
 	}
 
-	public boolean getEstadoGrilla() {
-		return estado_grilla;
-	}
-
 	public JPanel[][] getCasillaGrande() {
 		return casillaGrande;
-	}
-
-	public void setEstadoGrilla(boolean estado) {
-		estado_grilla = estado;
 	}
 
 	public JTextField getTextField() {
@@ -205,9 +193,6 @@ public class Activa extends JPanel implements Observer{
 	public JFrame getFramePerdio() {
 		return framePerdio;
 	}
-
-
-	
 }
 
 
